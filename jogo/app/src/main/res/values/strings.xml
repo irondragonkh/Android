@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">WorldAdventure</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="EmptyUsername">Username field is empty</string>
+    <string name="EmptyPassword">Password field is empty</string>
+    <string name="title_activity_hero_selection">HeroSelection</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="BCreateAccount">Create Account</string>
+    <string name="WrongUsername">Wrong username, pls insert again</string>
+    <string name="WrongPassword">Wrong password, pls insert again</string>
+    <string name="InvalidNewUsername">That username already exist</string>
+    <string name="Selection_Hero1">Hero 1</string>
+    <string name="Selection_Hero2">Hero 2</string>
+    <string name="Selection_Hero3">Hero 3</string>
+    <string name="Selection_Delete">Delete</string>
+    <string name="Selection_Level">Level:</string>
+    <string name="Selection_Class">Class:</string>
+    <string name="Selection_HP">HP:</string>
+    <string name="Selection_Weapon">Weapon:</string>
+    <string name="Selection_ATK">ATK:</string>
+    <string name="Selection_Luck">Luck:</string>
+    <string name="Selection_Defence">Defence:</string>
+    <string name="Selection_Armor">Armor:</string>
+    <string name="Selection_Inventory">Inventory</string>
+</resources>
