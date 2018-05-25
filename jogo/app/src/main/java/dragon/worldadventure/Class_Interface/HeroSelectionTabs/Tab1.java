@@ -40,6 +40,7 @@ public class Tab1 extends Fragment {
         imageViewHeroIcon.setVisibility(View.INVISIBLE);
         gridLayoutHeroStats.setVisibility(View.INVISIBLE);
         buttonInventario.setVisibility(View.INVISIBLE);
+        gifImageViewHero.setImageResource(R.drawable.ic_person_add_black_24dp);
 
         return rootView;
     }

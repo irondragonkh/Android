@@ -7,13 +7,14 @@ import dragon.worldadventure.Base_Dados.UserDBTable;
 
 public class User {
     private long id;
-    public String username;
-    public String password;
+    private String username;
+    private String password;
 
     public User(Cursor cursor) {
-        this.username = cursor.getString(cursor.getColumnIndex(UserDBTable.DB_COLUMN_USERNAME));
         this.password = cursor.getString(cursor.getColumnIndex(UserDBTable.DB_COLUMN_PASSWORD));
+        this.username = cursor.getString(cursor.getColumnIndex(UserDBTable.DB_COLUMN_USERNAME));
         this.id = cursor.getLong(cursor.getColumnIndex(UserDBTable._ID));
+
 
     }
 

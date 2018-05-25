@@ -51,9 +51,10 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.EditTextpassword);
         user.setPassword(editTextPassword.getText().toString());
         user.setUsername(editTextUsername.getText().toString());
-//        final Cursor cursor =  userDBTable.querySingle(UserDBTable.ALL_FIELDS,"" + 2);
+
+
         //cursor = loginDBTable.querySingle(editTextUsername.getText().toString());
-      //  AppData.user = new User(cursor);
+
         //AppData.login.setUsername(editTextUsername.getText().toString());
         //AppData.login.setPassword(editTextPassword.getText().toString());
 
@@ -126,6 +127,13 @@ public class LoginActivity extends AppCompatActivity {
             }else if (cursorpassword.getCount() ==0) {
                 Toast.makeText(this, R.string.WrongPassword,Toast.LENGTH_SHORT).show();
             }else{
+               // final Cursor cursor =  userDBTable.querySingle(UserDBTable.ALL_FIELDS,"" + editTextUsername.getText().toString());
+
+               /* if(cursor.moveToNext()) {
+                    AppData.user = new User(cursor);
+
+
+                }*/
                 Intent intent = new Intent(this, HeroSelection.class);
                 startActivity(intent);
             }

@@ -50,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:src="@drawable/selection_mage_smaller60_130"
             tools:src="@drawable/selection_warrior_smaller" />
        </android.support.v7.widget.CardView>
     </GridLayout>

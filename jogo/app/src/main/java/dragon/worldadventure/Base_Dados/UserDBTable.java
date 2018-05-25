@@ -32,6 +32,10 @@ public class UserDBTable implements BaseColumns {
         return query(projection, DB_COLUMN_USERNAME + "=?", new String[]{id}, null);
     }
 
+    public Cursor queryAll(String username){
+        String queryall = "SELECT"+ DB_COLUMN_USERNAME+ ", "+ DB_COLUMN_PASSWORD+", "+ _ID +" FROM " + TABLE_NAME + " WHERE"+ DB_COLUMN_USERNAME +"='"+username+"'";
+        return db.rawQuery(queryall,null);
+    }
     public Cursor queryUsername(String username){
         String queryusername = "SELECT"+ DB_COLUMN_USERNAME +" FROM " + TABLE_NAME + " WHERE"+ DB_COLUMN_USERNAME +"='"+username+"'";
         return db.rawQuery(queryusername,null);
