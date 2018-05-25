@@ -46,10 +46,11 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
         <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/ImageView_Hero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/ImageView_Hero2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
+            android:onClick="Image_Selection"
             android:src="@drawable/selection_mage_smaller60_130"
             tools:src="@drawable/selection_warrior_smaller" />
        </android.support.v7.widget.CardView>

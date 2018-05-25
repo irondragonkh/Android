@@ -1,6 +1,8 @@
 package dragon.worldadventure.Class_Interface;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,14 +18,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import dragon.worldadventure.Base_Dados.DBHandler;
+import dragon.worldadventure.Base_Dados.UserDBTable;
+import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 import dragon.worldadventure.Class_Interface.HeroSelectionTabs.Tab1;
 import dragon.worldadventure.Class_Interface.HeroSelectionTabs.Tab2;
 import dragon.worldadventure.Class_Interface.HeroSelectionTabs.Tab3;
+import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.R;
+import pl.droidsonroids.gif.GifImageView;
 
 public class HeroSelection extends AppCompatActivity {
+
+    final DBHandler dbHandler=new DBHandler(this);
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -39,6 +49,14 @@ public class HeroSelection extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+
+    public Cursor cursorcheckexistance=null;
+    public Cursor cursorchecktab=null;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +74,27 @@ public class HeroSelection extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
+        final SQLiteDatabase db =dbHandler.getReadableDatabase();
+        final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+
+        cursorcheckexistance = userHeroesDBTable.queryCheckExistance(AppData.user.getId());
+
+        if(cursorcheckexistance.moveToNext()){
+         cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(),1);
+         if (cursorchecktab.moveToNext()){
+             //meter na app data userhero1 dados
+         }
+            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(),2);
+            if (cursorchecktab.moveToNext()){
+                //meter na app data userhero2 dados
+            }
+            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
+            if (cursorchecktab.moveToNext()){
+                //meter na app data userhero3 dados
+            }
+
+
+        }
 
 
 
@@ -108,6 +147,9 @@ public class HeroSelection extends AppCompatActivity {
 
     public void Image_Selection(View view) {
 
+        GifImageView gifImageViewHero1 =findViewById(R.id.ImageView_Hero1);
+        GifImageView gifImageViewHero2 =findViewById(R.id.ImageView_Hero2);
+        GifImageView gifImageViewHero3 =findViewById(R.id.ImageView_Hero3);
     }
 
     public void Start_Adventure(){

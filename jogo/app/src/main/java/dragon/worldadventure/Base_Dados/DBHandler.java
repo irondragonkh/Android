@@ -36,15 +36,6 @@ public class DBHandler extends SQLiteOpenHelper {
         levelDBTable.seed();
 
 
-
-
-
-
-        if(TEST_VERSION){
-            userDBTable.seed();
-            levelDBTable.seed();
-        }
-
     }
 
 

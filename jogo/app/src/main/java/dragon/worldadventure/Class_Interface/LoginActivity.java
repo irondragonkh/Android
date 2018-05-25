@@ -21,16 +21,19 @@ import dragon.worldadventure.R;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    final DBHandler dbHandler=new DBHandler(this);
 
     private EditText editTextUsername;
     private EditText editTextPassword;
-    private DBHandler dbHandler=new DBHandler(this);
-    private SQLiteDatabase db;
-    private UserDBTable userDBTable;
     public  User user = new User();
+    public Cursor cursor;
+    private String username;
+    private String password;
+    public long id;
 
     public Cursor cursorusername=null;
     public Cursor cursorpassword=null;
+    public Cursor cursorid=null;
 
 
 
@@ -40,12 +43,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         // Set up the login form.
 
-        db = dbHandler.getReadableDatabase();
-        userDBTable = new UserDBTable(db);
+
 
     }
 
     public void CreateAccount(View view) {
+
+
+        final SQLiteDatabase db =dbHandler.getReadableDatabase();
+        final UserDBTable userDBTable= new UserDBTable(db);
 
         editTextUsername = (EditText) findViewById(R.id.EditTextUsername);
         editTextPassword = (EditText) findViewById(R.id.EditTextpassword);
@@ -76,7 +82,23 @@ public class LoginActivity extends AppCompatActivity {
             if (cursorusername.getCount() > 0) {
                 Toast.makeText(this, R.string.InvalidNewUsername,Toast.LENGTH_SHORT).show();
             }else{
-               userDBTable.insert(user.getContentValues());
+                username=editTextUsername.getText().toString();
+                password = editTextPassword.getText().toString();
+                cursorid = userDBTable.queryAll(username);
+                if(cursorid.moveToNext()){
+                    id = cursorid.getColumnIndex(UserDBTable._ID);
+                }
+
+                AppData.user = new User(username,password);
+
+
+               userDBTable.insert(AppData.user.getContentValues());
+
+                cursorid = userDBTable.queryAll(username);
+                if(cursorid.moveToNext()){
+                    id = cursorid.getColumnIndex(UserDBTable._ID);
+                }
+                AppData.user.setId(id);
                 Intent intent = new Intent(this, HeroSelection.class);
                 startActivity(intent);
             }
@@ -86,9 +108,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void SignIn(View view) {
 
-
-
-
+        final DBHandler dbHandler=new DBHandler(this);
+        final SQLiteDatabase db=dbHandler.getReadableDatabase();
+        final UserDBTable userDBTable= new UserDBTable(db);
 
         editTextUsername = (EditText) findViewById(R.id.EditTextUsername);
         editTextPassword = (EditText) findViewById(R.id.EditTextpassword);
@@ -127,13 +149,19 @@ public class LoginActivity extends AppCompatActivity {
             }else if (cursorpassword.getCount() ==0) {
                 Toast.makeText(this, R.string.WrongPassword,Toast.LENGTH_SHORT).show();
             }else{
-               // final Cursor cursor =  userDBTable.querySingle(UserDBTable.ALL_FIELDS,"" + editTextUsername.getText().toString());
+                username=editTextUsername.getText().toString();
+                password = editTextPassword.getText().toString();
+                cursorid = userDBTable.queryAll(username);
+                if(cursorid.moveToNext()){
+                    id = cursorid.getColumnIndex(UserDBTable._ID);
+                }
 
-               /* if(cursor.moveToNext()) {
-                    AppData.user = new User(cursor);
 
 
-                }*/
+                AppData.user = new User(username,password);
+                AppData.user.setId(id);
+
+
                 Intent intent = new Intent(this, HeroSelection.class);
                 startActivity(intent);
             }
