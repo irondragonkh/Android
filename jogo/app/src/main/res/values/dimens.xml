@@ -7,4 +7,6 @@
     <dimen name="Selection_HerotitleSize">34sp</dimen>
     <dimen name="Selection_DeleteSize">10sp</dimen>
     <dimen name="Selection_StatsSize">12sp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
 </resources>

@@ -26,8 +26,11 @@
         <activity
             android:name=".Class_Interface.HeroSelection"
             android:label="@string/title_activity_hero_selection"
-            android:theme="@style/AppTheme.NoActionBar"
-           ></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Class_Interface.InGame"
+            android:label="@string/title_activity_in_game"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -1,8 +1,6 @@
 package dragon.worldadventure.Class_Interface.HeroSelectionTabs;
 
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,13 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import dragon.worldadventure.Base_Dados.DBHandler;
-import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.R;
 import pl.droidsonroids.gif.GifImageView;
@@ -29,7 +22,7 @@ public class Tab1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab1, container, false);
+        View rootView = inflater.inflate(R.layout.heroselectiontab1, container, false);
 
 
 
@@ -58,7 +51,10 @@ public class Tab1 extends Fragment {
             imageViewHeroIcon.setVisibility(View.INVISIBLE);
             gridLayoutHeroStats.setVisibility(View.INVISIBLE);
             buttonInventario.setVisibility(View.INVISIBLE);
-            gifImageViewHero.setImageResource(R.drawable.ic_person_add_black_24dp);
+            gifImageViewHero.setVisibility(View.GONE);
+
+
+
         }
     }
 }

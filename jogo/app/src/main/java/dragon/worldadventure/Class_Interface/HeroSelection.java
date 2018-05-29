@@ -145,19 +145,11 @@ public class HeroSelection extends AppCompatActivity {
     public void Delete_Hero3(View view) {
     }
 
-    public void Image_Selection(View view) {
-
-        GifImageView gifImageViewHero1 =findViewById(R.id.ImageView_Hero1);
-        GifImageView gifImageViewHero2 =findViewById(R.id.ImageView_Hero2);
-        GifImageView gifImageViewHero3 =findViewById(R.id.ImageView_Hero3);
-    }
-
-    public void Start_Adventure(){
+    public void Create_NewHero(View view){
 
     }
 
-    public void Create_NewHero(){
-
+    public void StartAdventure(View view) {
     }
 
 
