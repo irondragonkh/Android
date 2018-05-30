@@ -7,10 +7,8 @@ import android.provider.BaseColumns;
 
 import dragon.worldadventure.Objects.Hero;
 
-public class HeroDBTable implements BaseColumns {
-    public static final String TABLE_NAME="HERO";
-    public static final String DB_COLUMN_NAME="HERONAME";
-    public static final String DB_COLUMN_CLASS="CLASS";
+public class StatsDBTable implements BaseColumns {
+    public static final String TABLE_NAME="STATS";
     public static final String DB_COLUMN_HP="HP";
     public static final String DB_COLUMN_ATK="ATK";
     public static final String DB_COLUMN_LUCK="LUCK";
@@ -18,8 +16,6 @@ public class HeroDBTable implements BaseColumns {
 
     public static final String[] ALL_FIELDS = {
             _ID,
-            DB_COLUMN_NAME,
-            DB_COLUMN_CLASS,
             DB_COLUMN_HP,
             DB_COLUMN_ATK,
             DB_COLUMN_DEFENSE,
@@ -28,17 +24,15 @@ public class HeroDBTable implements BaseColumns {
     };
     private SQLiteDatabase db;
 
-    public HeroDBTable(SQLiteDatabase db){this.db=db;}
+    public StatsDBTable(SQLiteDatabase db){this.db=db;}
 
     public void create(){
         db.execSQL("CREATE TABLE " + TABLE_NAME + " ( "
                 + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DB_COLUMN_NAME + " TEXT NOT NULL, "
-                + DB_COLUMN_CLASS + " TEXT NOT NULL, "
-                + DB_COLUMN_HP + " INTEGER NOT NULL, "
-                + DB_COLUMN_ATK + " INTEGER NOT NULL, "
-                + DB_COLUMN_DEFENSE + " INTEGER NOT NULL, "
-                + DB_COLUMN_LUCK + " INTEGER NOT NULL "
+                + DB_COLUMN_HP + " INTEGER, "
+                + DB_COLUMN_ATK + " INTEGER, "
+                + DB_COLUMN_DEFENSE + " INTEGER, "
+                + DB_COLUMN_LUCK + " INTEGER "
                 +")");
     }
 
@@ -66,11 +60,7 @@ public class HeroDBTable implements BaseColumns {
     }
 
     public void seed(){
-        insert(new Hero("Elalynn","Warrior",5,5,5,3).getContentValues());
-        insert(new Hero("Ygqora","Mage",5,11,2,3).getContentValues());
-        insert(new Hero("Duncan","Paladin",7,3,7,3).getContentValues());
-        insert(new Hero("Faryil","Archer",3,7,5,7).getContentValues());
-        insert(new Hero("Areradon","Priest",7,3,7,7).getContentValues());
+
     }
 }
 

@@ -7,12 +7,12 @@ import android.provider.BaseColumns;
 
 public class WeaponDBTable implements BaseColumns {
 
-    public static final String TABLE_NAME = " WEAPONS ";
-    public static final String DB_COLUMN_NAME = " NAME ";
-    public static final String DB_COLUMN_HP = " HP ";
-    public static final String DB_COLUMN_ATK = " ATK ";
-    public static final String DB_COLUMN_LUCK = " LUCK ";
-    public static final String DB_COLUMN_DEFENSE = " DEFENSE ";
+    public static final String TABLE_NAME = "WEAPONS";
+    public static final String DB_COLUMN_NAME = "NAME";
+    public static final String DB_COLUMN_HP = "HP";
+    public static final String DB_COLUMN_ATK = "ATK";
+    public static final String DB_COLUMN_LUCK = "LUCK";
+    public static final String DB_COLUMN_DEFENSE = "DEFENSE";
 
 
     public static final String[] ALL_FIELDS = {

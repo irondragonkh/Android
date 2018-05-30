@@ -31,6 +31,10 @@
             android:name=".Class_Interface.InGame"
             android:label="@string/title_activity_in_game"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Class_Interface.CreateHero"
+            android:label="@string/title_activity_create_hero"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

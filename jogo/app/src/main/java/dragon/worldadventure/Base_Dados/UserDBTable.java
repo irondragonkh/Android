@@ -8,9 +8,9 @@ import android.provider.BaseColumns;
 import dragon.worldadventure.Objects.User;
 
 public class UserDBTable implements BaseColumns {
-    public static final String TABLE_NAME=" USER ";
-    public static final String DB_COLUMN_USERNAME=" USERNAME ";
-    public static final String DB_COLUMN_PASSWORD=" PASSWORD ";
+    public static final String TABLE_NAME="USER";
+    public static final String DB_COLUMN_USERNAME="USERNAME";
+    public static final String DB_COLUMN_PASSWORD="PASSWORD";
 
     public static final String[] ALL_FIELDS = {
             _ID,
@@ -28,20 +28,24 @@ public class UserDBTable implements BaseColumns {
     public Cursor query(String[] projection, String selection, String[] selectionArgs, String orderBy){
         return db.query(TABLE_NAME,projection,selection,selectionArgs,null,null,orderBy);
     }
-    public Cursor querySingle(String [] projection, String id) {
-        return query(projection, DB_COLUMN_USERNAME + "=?", new String[]{id}, null);
+    public Cursor querySingle(String [] projection, String username) {
+        return query(projection, DB_COLUMN_USERNAME + "=?", new String[]{username}, null);
+    }
+
+    public Cursor querySinglePassword(String [] projection, String password) {
+        return query(projection, DB_COLUMN_USERNAME + "=?", new String[]{password}, null);
     }
 
     public Cursor queryAll(String username){
-        String queryall = "SELECT"+ DB_COLUMN_USERNAME+ ", "+ DB_COLUMN_PASSWORD+", "+ _ID +" FROM " + TABLE_NAME + " WHERE"+ DB_COLUMN_USERNAME +"='"+username+"'";
+        String queryall = "SELECT "+ DB_COLUMN_USERNAME+ ", "+ DB_COLUMN_PASSWORD+", "+ _ID +" FROM " + TABLE_NAME + " WHERE"+ DB_COLUMN_USERNAME +"='"+username+"'";
         return db.rawQuery(queryall,null);
     }
     public Cursor queryUsername(String username){
-        String queryusername = "SELECT"+ DB_COLUMN_USERNAME +" FROM " + TABLE_NAME + " WHERE"+ DB_COLUMN_USERNAME +"='"+username+"'";
+        String queryusername = "SELECT "+ DB_COLUMN_USERNAME +" FROM " + TABLE_NAME + " WHERE "+ DB_COLUMN_USERNAME +"='"+username+"'";
         return db.rawQuery(queryusername,null);
     }
     public Cursor queryPassword(String password){
-        String querypassword = "SELECT"+ DB_COLUMN_PASSWORD +" FROM " + TABLE_NAME + " WHERE"+ DB_COLUMN_PASSWORD +"='"+password+"'";
+        String querypassword = "SELECT "+ DB_COLUMN_PASSWORD +" FROM " + TABLE_NAME + " WHERE a"+ DB_COLUMN_PASSWORD +"='"+password+"'";
         return db.rawQuery(querypassword,null);
     }
 

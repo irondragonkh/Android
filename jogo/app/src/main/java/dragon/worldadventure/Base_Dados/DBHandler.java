@@ -26,14 +26,17 @@ public class DBHandler extends SQLiteOpenHelper {
         final WeaponDBTable weaponDBTable = new WeaponDBTable(db);
         final ArmorDBTable armorDBTable = new ArmorDBTable(db);
         final UserHeroesDBTable userHeroesDBTable = new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
         userDBTable.create();
         heroDBTable.create();
         levelDBTable.create();
         weaponDBTable.create();
         armorDBTable.create();
         userHeroesDBTable.create();
+        statsDBTable.create();
         heroDBTable.seed();
         levelDBTable.seed();
+
 
 
     }
@@ -49,6 +52,7 @@ public class DBHandler extends SQLiteOpenHelper {
             new WeaponDBTable(db).create();
             new ArmorDBTable(db).create();
             new UserHeroesDBTable(db).create();
+            new StatsDBTable(db).create();
         }
     }
 }

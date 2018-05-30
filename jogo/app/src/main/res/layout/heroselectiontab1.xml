@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:onClick="Create_NewHero"
+                android:onClick="Create_NewHero1"
                 android:src="@drawable/ic_person_add_black_24dp"
                 />
        </android.support.v7.widget.CardView>

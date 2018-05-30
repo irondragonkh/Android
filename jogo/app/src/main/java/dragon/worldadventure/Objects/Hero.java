@@ -19,12 +19,12 @@ public class Hero {
 
     public Hero(Cursor cursor){
         this.id=cursor.getLong(cursor.getColumnIndex(HeroDBTable._ID));
-        this.heroname = cursor.getString(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_NAME));
-        this.classe = cursor.getString(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_CLASS));
         this.hp = cursor.getDouble(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_HP));
         this.atk = cursor.getDouble(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_ATK));
         this.luck = cursor.getDouble(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_LUCK));
         this.defense = cursor.getDouble(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_DEFENSE));
+        this.heroname = cursor.getString(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_NAME));
+        this.classe = cursor.getString(cursor.getColumnIndex(HeroDBTable.DB_COLUMN_CLASS));
     }
 
     //construtor----------------------------------------------------------------------------------------

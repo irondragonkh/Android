@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="11"
-    tools:context=".Class_Interface.HeroSelection">
+    tools:context=".Class_Interface.CreateHero">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:id="@+id/TextViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Selection_Hero2"
+            android:text="@string/CreateHeroTitle_Priest"
             android:textAlignment="center"
             android:textSize="@dimen/Selection_HerotitleSize" />
 
@@ -45,22 +45,13 @@
             android:layout_rowWeight="1"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/ImageView_Hero2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:onClick="StartAdventure"
-            tools:src="@drawable/selection_warrior_smaller" />
             <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/ImageView_CreateHero2"
+                android:id="@+id/ImageView_Hero1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:onClick="Create_NewHero2"
-                android:src="@drawable/ic_person_add_black_24dp"
-                />
-       </android.support.v7.widget.CardView>
+                android:src="@drawable/selection_priest_smaller" />
+        </android.support.v7.widget.CardView>
     </GridLayout>
 
     <LinearLayout
@@ -78,24 +69,14 @@
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
-            tools:text="Hero Name" />
+            />
 
         <ImageView
             android:id="@+id/ImageViewHeroIcon"
             android:layout_width="92dp"
             android:layout_height="wrap_content"
-            tools:src="@drawable/warrior" />
+            android:src="@drawable/priest" />
 
-        <TextView
-            android:id="@+id/TextViewDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:clickable="true"
-            android:onClick="Delete_Hero2"
-            android:text="@string/Selection_Delete"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/Selection_DeleteSize" />
     </LinearLayout>
 
     <GridLayout
@@ -401,7 +382,6 @@
         </LinearLayout>
 
     </GridLayout>
-
     <RelativeLayout
         android:id="@+id/RelativeLayoutButoes"
         android:layout_width="match_parent"
@@ -414,11 +394,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/Selection_Inventory"
-            android:onClick="Check_Hero_Inventory2"/>
+            android:text="@string/CreateHeroButton_SelectHero"
+            android:onClick="CreateHero4"/>
 
     </RelativeLayout>
-
-
 
 </LinearLayout>

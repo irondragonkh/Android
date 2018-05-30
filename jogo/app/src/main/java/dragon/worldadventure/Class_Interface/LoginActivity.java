@@ -25,15 +25,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextUsername;
     private EditText editTextPassword;
-    public  User user = new User();
     public Cursor cursor;
-    private String username;
-    private String password;
+    public Cursor cursorpassword;
     public long id;
-
-    public Cursor cursorusername=null;
-    public Cursor cursorpassword=null;
-    public Cursor cursorid=null;
 
 
 
@@ -55,50 +49,33 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextUsername = (EditText) findViewById(R.id.EditTextUsername);
         editTextPassword = (EditText) findViewById(R.id.EditTextpassword);
-        user.setPassword(editTextPassword.getText().toString());
-        user.setUsername(editTextUsername.getText().toString());
+
+        AppData.user = new User(editTextUsername.getText().toString(),editTextPassword.getText().toString());
+
+        cursor = userDBTable.querySingle(UserDBTable.ALL_FIELDS,AppData.user.getUsername());
+
+        if(AppData.user.getUsername().trim().isEmpty()||AppData.user.getPassword().trim().isEmpty()) {
 
 
-        //cursor = loginDBTable.querySingle(editTextUsername.getText().toString());
-
-        //AppData.login.setUsername(editTextUsername.getText().toString());
-        //AppData.login.setPassword(editTextPassword.getText().toString());
-
-
-
-        if(user.getUsername().trim().isEmpty()||user.getPassword().trim().isEmpty()) {
-
-
-            if (user.getUsername().trim().isEmpty()) {
+            if (AppData.user.getUsername().trim().isEmpty()) {
                 editTextUsername.setError(getString(R.string.EmptyUsername));
                 return;
             }
-            if (user.getPassword().trim().isEmpty()) {
+            if (AppData.user.getPassword().trim().isEmpty()) {
                 editTextPassword.setError(getString(R.string.EmptyPassword));
                 return;
             }
         }else{
-           cursorusername = userDBTable.queryUsername(user.getUsername().toString());
-            if (cursorusername.getCount() > 0) {
+            if (cursor.getCount() > 0) {
                 Toast.makeText(this, R.string.InvalidNewUsername,Toast.LENGTH_SHORT).show();
             }else{
-                username=editTextUsername.getText().toString();
-                password = editTextPassword.getText().toString();
-                cursorid = userDBTable.queryAll(username);
-                if(cursorid.moveToNext()){
-                    id = cursorid.getColumnIndex(UserDBTable._ID);
-                }
-
-                AppData.user = new User(username,password);
-
-
                userDBTable.insert(AppData.user.getContentValues());
 
-                cursorid = userDBTable.queryAll(username);
-                if(cursorid.moveToNext()){
-                    id = cursorid.getColumnIndex(UserDBTable._ID);
-                }
-                AppData.user.setId(id);
+               cursor = userDBTable.querySingle(UserDBTable.ALL_FIELDS,AppData.user.getUsername());
+
+               if(cursor.moveToNext()){
+                   AppData.user = new User(cursor);
+               }
                 Intent intent = new Intent(this, HeroSelection.class);
                 startActivity(intent);
             }
@@ -115,52 +92,33 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = (EditText) findViewById(R.id.EditTextUsername);
         editTextPassword = (EditText) findViewById(R.id.EditTextpassword);
 
-
-        user.setPassword(editTextPassword.getText().toString());
-        user.setUsername(editTextUsername.getText().toString());
-
-        //AppData.login.setUsername(editTextUsername.getText().toString());
-        //AppData.login.setPassword(editTextPassword.getText().toString());
+        AppData.user = new User(editTextUsername.getText().toString(),editTextPassword.getText().toString());
 
 
+        if(AppData.user.getUsername().trim().isEmpty()||AppData.user.getPassword().trim().isEmpty()) {
 
 
-
-        if(user.getUsername().trim().isEmpty()||user.getPassword().trim().isEmpty()) {
-
-
-            if (user.getUsername().trim().isEmpty()) {
+            if (AppData.user.getUsername().trim().isEmpty()) {
                 editTextUsername.setError(getString(R.string.EmptyUsername));
                 return;
             }
-            if (user.getPassword().trim().isEmpty()) {
+            if (AppData.user.getPassword().trim().isEmpty()) {
                 editTextPassword.setError(getString(R.string.EmptyPassword));
                 return;
             }
         }else {
+            cursor = userDBTable.querySingle(UserDBTable.ALL_FIELDS,AppData.user.getUsername());
+            cursorpassword = userDBTable.querySinglePassword(UserDBTable.ALL_FIELDS,AppData.user.getPassword());
 
-             cursorusername = userDBTable.queryUsername(user.getUsername().toString());
-
-             cursorpassword =userDBTable.queryPassword(user.getPassword().toString());
-
-
-            if (cursorusername.getCount() == 0) {
+            if (cursor.getCount() == 0) {
                 Toast.makeText(this, R.string.WrongUsername,Toast.LENGTH_SHORT).show();
             }else if (cursorpassword.getCount() ==0) {
                 Toast.makeText(this, R.string.WrongPassword,Toast.LENGTH_SHORT).show();
             }else{
-                username=editTextUsername.getText().toString();
-                password = editTextPassword.getText().toString();
-                cursorid = userDBTable.queryAll(username);
-                if(cursorid.moveToNext()){
-                    id = cursorid.getColumnIndex(UserDBTable._ID);
+
+                if(cursor.moveToNext()){
+                    AppData.user = new User(cursor);
                 }
-
-
-
-                AppData.user = new User(username,password);
-                AppData.user.setId(id);
-
 
                 Intent intent = new Intent(this, HeroSelection.class);
                 startActivity(intent);

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import dragon.worldadventure.Base_Dados.HeroDBTable;
+import dragon.worldadventure.Base_Dados.StatsDBTable;
 import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 
 
@@ -16,6 +17,7 @@ public class UserHero {
     private long armorid;
     private long levelid;
     private int tab;
+    private long statsid;
 
 
 
@@ -29,6 +31,7 @@ public class UserHero {
         this.armorid=cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_ARMOR));
         this.levelid=cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_LEVEL));
         this.tab = cursor.getInt(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_TAB));
+        this.statsid = cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_STATS));
 
     }
 
@@ -38,7 +41,7 @@ public class UserHero {
 
     }
 
-    public UserHero(long id, String userheroname, long heroid, long userid, long weaponid, long armorid, long levelid, int tab) {
+    public UserHero( String userheroname, long heroid, long userid, long weaponid, long armorid, long levelid, long statsid , int tab) {
         this.id = -1;
         this.userheroname = userheroname;
         this.heroid = heroid;
@@ -46,6 +49,7 @@ public class UserHero {
         this.weaponid = weaponid;
         this.armorid = armorid;
         this.levelid = levelid;
+        this.statsid = statsid;
         this.tab = tab;
     }
 
@@ -116,6 +120,14 @@ public class UserHero {
     public void setTab(int tab) {
         this.tab = tab;
     }
+
+    public long getIdstats() {
+        return statsid;
+    }
+
+    public void setIdstats(long idstats) {
+        this.statsid = idstats;
+    }
     //---------------------------------------------------------------------------------------------------
 
 
@@ -127,6 +139,7 @@ public class UserHero {
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_LEVEL,levelid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_USER,userid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_WEAPON,weaponid);
+        contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_STATS,statsid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_TAB,tab);
         return contentValues;
     }

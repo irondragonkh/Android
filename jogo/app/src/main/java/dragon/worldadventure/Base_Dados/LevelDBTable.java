@@ -9,9 +9,9 @@ import dragon.worldadventure.Objects.Level;
 
 
 public class LevelDBTable implements BaseColumns {
-    public static final String TABLE_NAME=" Level ";
-    public static final String DB_COLUMN_LEVEL=" Level ";
-    public static final String DB_COLUMN_XP=" XP ";
+    public static final String TABLE_NAME="LEVEL";
+    public static final String DB_COLUMN_LEVEL="LEVEL";
+    public static final String DB_COLUMN_XP="XP";
 
     public static final String[] ALL_FIELDS = {
             _ID,

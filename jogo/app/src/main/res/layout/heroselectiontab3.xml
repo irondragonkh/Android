@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:onClick="Create_NewHero"
+                android:onClick="Create_NewHero3"
                 android:src="@drawable/ic_person_add_black_24dp"
                 />
        </android.support.v7.widget.CardView>
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:clickable="true"
-            android:onClick="Delete_Hero1"
+            android:onClick="Delete_Hero3"
             android:text="@string/Selection_Delete"
             android:textAlignment="textEnd"
             android:textSize="@dimen/Selection_DeleteSize"
@@ -417,7 +417,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="@string/Selection_Inventory"
-            android:onClick="Check_Hero_Inventory1"/>
+            android:onClick="Check_Hero_Inventory3"/>
 
     </RelativeLayout>
 

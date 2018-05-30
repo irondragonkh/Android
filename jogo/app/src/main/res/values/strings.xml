@@ -35,7 +35,15 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_create_hero">CreateHero</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_1">Warrior</string>
+    <string name="tab_text_2">Mage</string>
+    <string name="tab_text_3">Paladin</string>
+    <string name="tab_text_4">Priest</string>
+    <string name="tab_text_5">Archer</string>
+    <string name="CreateHeroTitle_Warrior">Warrior</string>
+    <string name="CreateHeroTitle_Mage">Mage</string>
+    <string name="CreateHeroTitle_Paladin">Paladin</string>
+    <string name="CreateHeroTitle_Priest">Priest</string>
+    <string name="CreateHeroTitle_Archer">Archer</string>
+    <string name="CreateHeroButton_SelectHero">Select Hero</string>
 </resources>
