@@ -46,4 +46,6 @@
     <string name="CreateHeroTitle_Priest">Priest</string>
     <string name="CreateHeroTitle_Archer">Archer</string>
     <string name="CreateHeroButton_SelectHero">Select Hero</string>
+    <string name="nav_header_EXP">EXP</string>
+    <string name="nav_header_HP">HP</string>
 </resources>

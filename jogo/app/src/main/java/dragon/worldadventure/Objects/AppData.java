@@ -28,6 +28,9 @@ public class AppData {
     public static boolean createtab1=false;
     public static boolean createtab2=false;
     public static boolean createtab3=false;
+    public static boolean selectedherotab1=false;
+    public static boolean selectedherotab2=false;
+    public static boolean selectedherotab3=false;
     //--------------------------------------------------------------------------criação de herois
     public static  Hero warrior=null;
     public static  Hero priest=null;

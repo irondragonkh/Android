@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:onClick="StartAdventure"
+            android:onClick="StartAdventure1"
             tools:src="@drawable/selection_warrior_smaller" />
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/ImageView_CreateHero1"

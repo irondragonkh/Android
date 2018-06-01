@@ -234,8 +234,28 @@ public class HeroSelection extends AppCompatActivity {
 
 
 
-    public void StartAdventure(View view) {
+    public void StartAdventure1(View view) {
+        AppData.selectedherotab1=true;
+        Intent intent = new Intent(this,InGame.class);
+        startActivity(intent);
+        finish();
     }
+
+    public void StartAdventure2(View view) {
+        AppData.selectedherotab2=true;
+        Intent intent = new Intent(this,InGame.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void StartAdventure3(View view) {
+        AppData.selectedherotab3=true;
+        Intent intent = new Intent(this,InGame.class);
+        startActivity(intent);
+        finish();
+    }
+
+
 
 
     /**
