@@ -12,6 +12,8 @@ public class Stats {
     public double atk;
     public double luck;
     public double defense;
+    public double currentxp;
+    public long userheroid;
 
 
 
@@ -21,6 +23,8 @@ public class Stats {
         this.atk = cursor.getDouble(cursor.getColumnIndex(StatsDBTable.DB_COLUMN_ATK));
         this.luck = cursor.getDouble(cursor.getColumnIndex(StatsDBTable.DB_COLUMN_LUCK));
         this.defense = cursor.getDouble(cursor.getColumnIndex(StatsDBTable.DB_COLUMN_DEFENSE));
+        this.currentxp = cursor.getDouble(cursor.getColumnIndex(StatsDBTable.DB_COLUMN_CURRENTXP));
+        this.userheroid = cursor.getLong(cursor.getColumnIndex(StatsDBTable.DB_COLUMN_ID_USERHERO));
     }
 
     //construtor----------------------------------------------------------------------------------------
@@ -29,12 +33,14 @@ public class Stats {
 
     }
 
-    public Stats(double hp, double atk, double defense, double luck){
+    public Stats(double hp, double atk, double defense, double luck,double currentxp, long userheroid){
         this.id=-1;
         this.hp=hp;
         this.atk=atk;
         this.luck=luck;
         this.defense=defense;
+        this.currentxp = currentxp;
+        this.userheroid = userheroid;
     }
     //--------------------------------------------------------------------------------------------------
 
@@ -79,6 +85,22 @@ public class Stats {
     public void setDefense(double defense) {
         this.defense = defense;
     }
+
+    public double getCurrentxp() {
+        return currentxp;
+    }
+
+    public void setCurrentxp(double currentxp) {
+        this.currentxp = currentxp;
+    }
+
+    public long getUserheroid() {
+        return userheroid;
+    }
+
+    public void setUserheroid(long userheroid) {
+        this.userheroid = userheroid;
+    }
     //---------------------------------------------------------------------------------------------------
 
     public ContentValues getContentValues(){
@@ -88,6 +110,8 @@ public class Stats {
         contentValues.put(StatsDBTable.DB_COLUMN_DEFENSE,defense);
         contentValues.put(StatsDBTable.DB_COLUMN_LUCK,luck);
         contentValues.put(StatsDBTable.DB_COLUMN_ATK,atk);
+        contentValues.put(StatsDBTable.DB_COLUMN_CURRENTXP,currentxp);
+        contentValues.put(StatsDBTable.DB_COLUMN_ID_USERHERO,userheroid);
         return contentValues;
     }
 

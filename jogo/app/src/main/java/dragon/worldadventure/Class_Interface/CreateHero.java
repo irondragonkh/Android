@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import dragon.worldadventure.Base_Dados.DBHandler;
 import dragon.worldadventure.Base_Dados.HeroDBTable;
+import dragon.worldadventure.Base_Dados.StatsDBTable;
 import dragon.worldadventure.Base_Dados.UserDBTable;
 import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 import dragon.worldadventure.Class_Interface.CreateHeroTabs.Tab1;
@@ -34,6 +35,7 @@ import dragon.worldadventure.Class_Interface.CreateHeroTabs.Tab5;
 import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.Objects.Hero;
 import dragon.worldadventure.Objects.Level;
+import dragon.worldadventure.Objects.Stats;
 import dragon.worldadventure.Objects.User;
 import dragon.worldadventure.Objects.UserHero;
 import dragon.worldadventure.R;
@@ -133,6 +135,7 @@ public class CreateHero extends AppCompatActivity {
 
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         if(AppData.createtab1){
             AppData.userHero1 = new UserHero();
@@ -142,6 +145,12 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero1.setLevelid(1);
             AppData.userHero1.setTab(1);
             userHeroesDBTable.insert(AppData.userHero1.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),1);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.warrior.getHp(),AppData.warrior.getAtk(),AppData.warrior.getDefense(),AppData.warrior.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
 
             AppData.createtab1=false;
 
@@ -155,6 +164,12 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero2.setTab(2);
             userHeroesDBTable.insert(AppData.userHero2.getContentValues());
 
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),2);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.warrior.getHp(),AppData.warrior.getAtk(),AppData.warrior.getDefense(),AppData.warrior.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab2=false;
 
         }else{
@@ -165,6 +180,12 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero3.setLevelid(1);
             AppData.userHero3.setTab(3);
             userHeroesDBTable.insert(AppData.userHero3.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.warrior.getHp(),AppData.warrior.getAtk(),AppData.warrior.getDefense(),AppData.warrior.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
 
             AppData.createtab3=false;
 
@@ -178,6 +199,7 @@ public class CreateHero extends AppCompatActivity {
         //mage
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         if(AppData.createtab1){
             AppData.userHero1 = new UserHero();
@@ -187,6 +209,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero1.setLevelid(1);
             AppData.userHero1.setTab(1);
             userHeroesDBTable.insert(AppData.userHero1.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),1);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.mage.getHp(),AppData.mage.getAtk(),AppData.mage.getDefense(),AppData.mage.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab1=false;
 
 
@@ -194,10 +223,17 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero2 = new UserHero();
             AppData.userHero2.setUserheroname(AppData.mage.getHeroname());
             AppData.userHero2.setHeroid(AppData.mage.getId());
-            AppData.userHero2.setUserid(AppData.user.getId());
+            AppData.userHero2.setUserid(AppData.mage.getId());
             AppData.userHero2.setLevelid(1);
             AppData.userHero2.setTab(2);
             userHeroesDBTable.insert(AppData.userHero2.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),2);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.mage.getHp(),AppData.mage.getAtk(),AppData.mage.getDefense(),AppData.mage.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab2=false;
 
         }else{
@@ -208,6 +244,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero3.setLevelid(1);
             AppData.userHero3.setTab(3);
             userHeroesDBTable.insert(AppData.userHero3.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.mage.getHp(),AppData.mage.getAtk(),AppData.mage.getDefense(),AppData.mage.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab3=false;
 
         }
@@ -220,6 +263,7 @@ public class CreateHero extends AppCompatActivity {
         //paladin
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         if(AppData.createtab1){
             AppData.userHero1 = new UserHero();
@@ -229,6 +273,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero1.setLevelid(1);
             AppData.userHero1.setTab(1);
             userHeroesDBTable.insert(AppData.userHero1.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),1);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.paladin.getHp(),AppData.paladin.getAtk(),AppData.paladin.getDefense(),AppData.paladin.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab1=false;
 
 
@@ -240,6 +291,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero2.setLevelid(1);
             AppData.userHero2.setTab(2);
             userHeroesDBTable.insert(AppData.userHero2.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),2);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.paladin.getHp(),AppData.paladin.getAtk(),AppData.paladin.getDefense(),AppData.paladin.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab2=false;
 
         }else{
@@ -250,6 +308,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero3.setLevelid(1);
             AppData.userHero3.setTab(3);
             userHeroesDBTable.insert(AppData.userHero3.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.paladin.getHp(),AppData.paladin.getAtk(),AppData.paladin.getDefense(),AppData.paladin.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab3=false;
 
         }
@@ -262,6 +327,7 @@ public class CreateHero extends AppCompatActivity {
         //priest
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         if(AppData.createtab1){
             AppData.userHero1 = new UserHero();
@@ -271,6 +337,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero1.setLevelid(1);
             AppData.userHero1.setTab(1);
             userHeroesDBTable.insert(AppData.userHero1.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),1);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.priest.getHp(),AppData.priest.getAtk(),AppData.priest.getDefense(),AppData.priest.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab1=false;
 
 
@@ -282,6 +355,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero2.setLevelid(1);
             AppData.userHero2.setTab(2);
             userHeroesDBTable.insert(AppData.userHero2.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),2);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.priest.getHp(),AppData.priest.getAtk(),AppData.priest.getDefense(),AppData.priest.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab2=false;
 
         }else{
@@ -292,6 +372,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero3.setLevelid(1);
             AppData.userHero3.setTab(3);
             userHeroesDBTable.insert(AppData.userHero3.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.priest.getHp(),AppData.priest.getAtk(),AppData.priest.getDefense(),AppData.priest.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab3=false;
 
         }
@@ -304,6 +391,7 @@ public class CreateHero extends AppCompatActivity {
         //archer
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         if(AppData.createtab1){
             AppData.userHero1 = new UserHero();
@@ -313,6 +401,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero1.setLevelid(1);
             AppData.userHero1.setTab(1);
             userHeroesDBTable.insert(AppData.userHero1.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),1);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.archer.getHp(),AppData.archer.getAtk(),AppData.archer.getDefense(),AppData.archer.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab1=false;
 
 
@@ -324,6 +419,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero2.setLevelid(1);
             AppData.userHero2.setTab(2);
             userHeroesDBTable.insert(AppData.userHero2.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),2);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.archer.getHp(),AppData.archer.getAtk(),AppData.archer.getDefense(),AppData.archer.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab2=false;
 
         }else{
@@ -334,6 +436,13 @@ public class CreateHero extends AppCompatActivity {
             AppData.userHero3.setLevelid(1);
             AppData.userHero3.setTab(3);
             userHeroesDBTable.insert(AppData.userHero3.getContentValues());
+
+            cursor = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
+            if(cursor.moveToNext()){
+                AppData.stats= new Stats(AppData.archer.getHp(),AppData.archer.getAtk(),AppData.archer.getDefense(),AppData.archer.getLuck(),0,cursor.getColumnIndex(UserHeroesDBTable._ID));
+                statsDBTable.insert(AppData.stats.getContentValues());
+            }
+
             AppData.createtab3=false;
 
         }

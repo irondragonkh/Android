@@ -17,7 +17,6 @@ public class UserHero {
     private long armorid;
     private long levelid;
     private int tab;
-    private long statsid;
 
 
 
@@ -31,7 +30,6 @@ public class UserHero {
         this.armorid=cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_ARMOR));
         this.levelid=cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_LEVEL));
         this.tab = cursor.getInt(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_TAB));
-        this.statsid = cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_STATS));
 
     }
 
@@ -49,7 +47,6 @@ public class UserHero {
         this.weaponid = weaponid;
         this.armorid = armorid;
         this.levelid = levelid;
-        this.statsid = statsid;
         this.tab = tab;
     }
 
@@ -121,13 +118,6 @@ public class UserHero {
         this.tab = tab;
     }
 
-    public long getIdstats() {
-        return statsid;
-    }
-
-    public void setIdstats(long idstats) {
-        this.statsid = idstats;
-    }
     //---------------------------------------------------------------------------------------------------
 
 
@@ -139,7 +129,6 @@ public class UserHero {
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_LEVEL,levelid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_USER,userid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_WEAPON,weaponid);
-        contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_STATS,statsid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_TAB,tab);
         return contentValues;
     }

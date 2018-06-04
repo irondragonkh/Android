@@ -22,6 +22,9 @@ public class AppData {
     public static Level leveltab1=null;
     public static Level leveltab2=null;
     public static Level leveltab3=null;
+    public static Stats stats1=null;
+    public static Stats stats2=null;
+    public static Stats stats3=null;
     public static boolean existstab1=false;
     public static boolean existstab2=false;
     public static boolean existstab3=false;
