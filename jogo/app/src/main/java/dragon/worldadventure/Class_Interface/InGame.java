@@ -2,6 +2,8 @@ package dragon.worldadventure.Class_Interface;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,16 +16,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import dragon.worldadventure.Base_Dados.DBHandler;
+import dragon.worldadventure.Base_Dados.LevelDBTable;
+import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 import dragon.worldadventure.Class_Interface.InGameTabs.Battle;
 import dragon.worldadventure.Class_Interface.InGameTabs.Preferences;
 import dragon.worldadventure.Class_Interface.InGameTabs.Profile;
 import dragon.worldadventure.Class_Interface.InGameTabs.Stats;
 import dragon.worldadventure.Class_Interface.InGameTabs.Travel;
+import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.R;
 
 public class InGame extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private  View navHeader;
+    final DBHandler dbHandler=new DBHandler(this);
+    public Cursor cursor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +51,43 @@ public class InGame extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        final SQLiteDatabase db =dbHandler.getReadableDatabase();
+        final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final LevelDBTable levelDBTable = new LevelDBTable(db);
+
+
+        navHeader = navigationView.getHeaderView(0);
+        TextView textView = (TextView) navHeader.findViewById(R.id.TextViewNavBarLevel);
+        ProgressBar progressBarEXP = (ProgressBar) navHeader.findViewById(R.id.ProgressBarEXP);
+        ProgressBar progressBarHP = (ProgressBar) navHeader.findViewById(R.id.ProgressBarHP);
+
+        if(AppData.selectedherotab1){
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.userHero1.getLevelid());
+
+            if(cursor.moveToNext()){
+                int level = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_LEVEL));
+                int exptotal = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_XP));
+                textView.setText("Level " + level);
+            }
+
+        }else if(AppData.selectedherotab2){
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.userHero2.getLevelid());
+
+            if(cursor.moveToNext()){
+                int level = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_LEVEL));
+                int exptotal = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_XP));
+                textView.setText("Level " + level);
+            }
+        }else{
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.userHero3.getLevelid());
+
+            if(cursor.moveToNext()){
+                int level = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_LEVEL));
+                int exptotal = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_XP));
+                textView.setText("Level " + level);
+            }
+        }
     }
 
     @Override
