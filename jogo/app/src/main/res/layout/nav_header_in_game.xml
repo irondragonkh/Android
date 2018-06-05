@@ -12,7 +12,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    tools:context=".Class_Interface.Bars.Bars"
     android:weightSum="8">
 
     <LinearLayout
@@ -24,21 +23,21 @@
         android:orientation="vertical">
 
         <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/GifImageViewHero"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/archerheroicon" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/TextViewHeroName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="IronDragonKH"/>
+           />
 
         <TextView
             android:id="@+id/TextViewNavBarLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Level 20"/>
+            />
 
 
     </LinearLayout>
@@ -53,29 +52,30 @@
         >
 
         <TextView
+            android:id="@+id/TextViewEXP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nav_header_EXP"/>
+            />
 
         <ProgressBar
-            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
             android:id="@+id/ProgressBarEXP"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progressDrawable="@android:color/holo_orange_dark"
             />
 
         <TextView
+            android:id="@+id/TextViewCurrentHP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nav_header_HP"/>
+            />
 
         <ProgressBar
             style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
             android:id="@+id/ProgressBarHP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progressDrawable="@android:color/holo_orange_dark"/>
+            />
 
     </LinearLayout>
 

@@ -17,7 +17,9 @@ import dragon.worldadventure.R;
 
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via username/password
+ * tambem se pode criar uma conta so tem 2 funçoes esta class
+ * no app data e criado um user
  */
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,6 +42,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     --------------------Criar Conta
+     */
 
     public void CreateAccount(View view) {
 
@@ -78,10 +84,15 @@ public class LoginActivity extends AppCompatActivity {
                }
                 Intent intent = new Intent(this, HeroSelection.class);
                 startActivity(intent);
+                finish();
             }
         }
 
     }
+
+    /**
+     --------------------Entrar na conta
+     */
 
     public void SignIn(View view) {
 
@@ -122,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, HeroSelection.class);
                 startActivity(intent);
+                finish();
             }
 
 

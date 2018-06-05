@@ -47,7 +47,7 @@ public class StatsDBTable implements BaseColumns {
         return db.query(TABLE_NAME,projection,selection,selectionArgs,null,null,orderBy);
     }
     public Cursor querySingle(String[] projection,String id){
-        return query(projection,_ID + "=?",new String[]{id},null);
+        return query(projection,DB_COLUMN_ID_USERHERO + "=?",new String[]{id},null);
     }
 
 

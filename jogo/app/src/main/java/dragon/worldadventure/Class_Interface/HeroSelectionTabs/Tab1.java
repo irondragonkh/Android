@@ -57,10 +57,10 @@ public class Tab1 extends Fragment {
             textViewHeroName.setText(AppData.userHero1.getUserheroname());
 
             //esta parte tem que ser mexida porque tem  que se adicionar os stats depois
-            textViewHp.setText(""+AppData.herotab1.getHp());
-            textViewATK.setText(""+AppData.herotab1.getAtk());
-            textViewDefence.setText(""+AppData.herotab1.getDefense());
-            textViewLuck.setText(""+AppData.herotab1.getLuck());
+            textViewHp.setText(""+AppData.stats1.getHp());
+            textViewATK.setText(""+AppData.stats1.getAtk());
+            textViewDefence.setText(""+AppData.stats1.getDefense());
+            textViewLuck.setText(""+AppData.stats1.getLuck());
             textViewClass.setText(AppData.herotab1.getClasse());
             textViewLevel.setText(""+AppData.leveltab1.getLevel());
 

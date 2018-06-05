@@ -25,6 +25,7 @@ import android.widget.Toast;
 import dragon.worldadventure.Base_Dados.DBHandler;
 import dragon.worldadventure.Base_Dados.HeroDBTable;
 import dragon.worldadventure.Base_Dados.LevelDBTable;
+import dragon.worldadventure.Base_Dados.StatsDBTable;
 import dragon.worldadventure.Base_Dados.UserDBTable;
 import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 import dragon.worldadventure.Class_Interface.HeroSelectionTabs.Tab1;
@@ -33,9 +34,25 @@ import dragon.worldadventure.Class_Interface.HeroSelectionTabs.Tab3;
 import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.Objects.Hero;
 import dragon.worldadventure.Objects.Level;
+import dragon.worldadventure.Objects.Stats;
 import dragon.worldadventure.Objects.UserHero;
 import dragon.worldadventure.R;
 import pl.droidsonroids.gif.GifImageView;
+
+
+/**
+ * Nesta classe existe a seleção de heroi, encaminhar para a criação de outro, apagar heroi, e encaminhar para iniciar jogo
+ *
+ * AppDatas Usafos:
+ *  -userHero1,userHero2,userHero3
+ *  -Herotab1,herotab2,herotab3
+ *  Booleans -existstab1,existstab2,existstab3
+ *  -stats1,stats2,stats3
+ *  -leveltab1,leveltab2,leveltab3
+ *  Booleans -createtab1,createtab2,createtab3
+ *  Booleans - Selectedherotab1,Selectedherotab2,Selectedherotab3
+ *
+ */
 
 public class HeroSelection extends AppCompatActivity {
 
@@ -60,6 +77,7 @@ public class HeroSelection extends AppCompatActivity {
     public Cursor cursorcheckexistance=null;
     public Cursor cursorchecktab=null;
     public Cursor cursorhero=null;
+    public Cursor cursor=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +100,7 @@ public class HeroSelection extends AppCompatActivity {
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
         final HeroDBTable heroDBTable = new HeroDBTable(db);
         final LevelDBTable levelDBTable = new LevelDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         cursorcheckexistance = userHeroesDBTable.queryCheckExistance(AppData.user.getId());
 
@@ -90,6 +109,11 @@ public class HeroSelection extends AppCompatActivity {
          if (cursorchecktab.moveToNext()){
              AppData.userHero1=new UserHero(cursorchecktab);
              AppData.existstab1=true;
+
+             cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS,""+AppData.userHero1.getId());
+             if(cursor.moveToNext()){
+                 AppData.stats1 = new Stats(cursor);
+             }
 
              cursorhero =  heroDBTable.querySingle(HeroDBTable.ALL_FIELDS,""+AppData.userHero1.getHeroid());
              if(cursorhero.moveToNext()){
@@ -113,6 +137,11 @@ public class HeroSelection extends AppCompatActivity {
                 if (cursorhero.moveToNext()) {
                     AppData.leveltab2 = new Level(cursorhero);
                 }
+
+                cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS,""+AppData.userHero2.getId());
+                if(cursor.moveToNext()){
+                    AppData.stats2 = new Stats(cursor);
+                }
             }
             cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
             if (cursorchecktab.moveToNext()) {
@@ -126,6 +155,11 @@ public class HeroSelection extends AppCompatActivity {
                 cursorhero = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.userHero3.getLevelid());
                 if (cursorhero.moveToNext()) {
                     AppData.leveltab3 = new Level(cursorhero);
+                }
+
+                cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS,""+AppData.userHero3.getId());
+                if(cursor.moveToNext()){
+                    AppData.stats3 = new Stats(cursor);
                 }
             }
 
@@ -197,9 +231,11 @@ public class HeroSelection extends AppCompatActivity {
     public void Delete_Hero1(View view) {
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
         AppData.existstab1=false;
 
         userHeroesDBTable.delete(""+AppData.userHero1.getId());
+        statsDBTable.delete(""+AppData.stats1.getId());
 
         Intent intent = new Intent(this,HeroSelection.class);
         startActivity(intent);
@@ -209,10 +245,12 @@ public class HeroSelection extends AppCompatActivity {
     public void Delete_Hero2(View view) {
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         AppData.existstab2=false;
 
         userHeroesDBTable.delete(""+AppData.userHero2.getId());
+        statsDBTable.delete(""+AppData.stats2.getId());
 
         Intent intent = new Intent(this,HeroSelection.class);
         startActivity(intent);
@@ -222,10 +260,12 @@ public class HeroSelection extends AppCompatActivity {
     public void Delete_Hero3(View view) {
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         AppData.existstab3=false;
 
         userHeroesDBTable.delete(""+AppData.userHero3.getId());
+        statsDBTable.delete(""+AppData.stats2.getId());
 
         Intent intent = new Intent(this,HeroSelection.class);
         startActivity(intent);

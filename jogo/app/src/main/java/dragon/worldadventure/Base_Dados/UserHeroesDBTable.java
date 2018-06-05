@@ -13,8 +13,6 @@ public class UserHeroesDBTable implements BaseColumns {
     public static final String DB_COLUMN_USERHERONAME = "USERHERONAME";
     public static final String DB_COLUMN__ID_HERO = "ID_HERO" ;
     public static final String DB_COLUMN_ID_USER = "ID_USER";
-    public static final String DB_COLUMN_ID_WEAPON = "WEAPON";
-    public static final String DB_COLUMN_ID_ARMOR = "ARMOR";
     public static final String DB_COLUMN_ID_LEVEL = "LEVEL";
     public static final String DB_COLUMN_TAB = "TAB";
 
@@ -24,8 +22,6 @@ public class UserHeroesDBTable implements BaseColumns {
         DB_COLUMN_USERHERONAME,
         DB_COLUMN__ID_HERO,
         DB_COLUMN_ID_USER,
-        DB_COLUMN_ID_WEAPON,
-        DB_COLUMN_ID_ARMOR,
         DB_COLUMN_ID_LEVEL,
         DB_COLUMN_TAB
     };
@@ -43,13 +39,9 @@ public class UserHeroesDBTable implements BaseColumns {
                        + DB_COLUMN_ID_LEVEL + " INTEGER NOT NULL, "
                        + DB_COLUMN__ID_HERO + " INTEGER NOT NULL, "
                        + DB_COLUMN_ID_USER + " INTEGER NOT NULL, "
-                       + DB_COLUMN_ID_WEAPON + " INTEGER, "
-                       + DB_COLUMN_ID_ARMOR + " INTEGER, "
                        + DB_COLUMN_TAB + " INTEGER NOT NULL, "
                        + " FOREIGN KEY ( " + DB_COLUMN__ID_HERO +" ) REFERENCES " + HeroDBTable.TABLE_NAME + "( " + HeroDBTable._ID + " ), "
                        + " FOREIGN KEY ( " + DB_COLUMN_ID_USER + " ) REFERENCES " + UserDBTable.TABLE_NAME + " ( " + UserDBTable._ID + "), "
-                       + " FOREIGN KEY ( " + DB_COLUMN_ID_WEAPON +" ) REFERENCES " + WeaponDBTable.TABLE_NAME + " ( "+ WeaponDBTable._ID +" ), "
-                       + " FOREIGN KEY ( " + DB_COLUMN_ID_ARMOR +" ) REFERENCES " + ArmorDBTable.TABLE_NAME + " ( "+ ArmorDBTable._ID +" ), "
                        + " FOREIGN KEY ( " + DB_COLUMN_ID_LEVEL +" ) REFERENCES " + LevelDBTable.TABLE_NAME + " ( "+ LevelDBTable._ID +" ) "
                         + " ) "
         );
@@ -71,8 +63,6 @@ public class UserHeroesDBTable implements BaseColumns {
                 + DB_COLUMN_USERHERONAME + ","
                 + DB_COLUMN__ID_HERO + ","
                 + DB_COLUMN_ID_USER + ","
-                + DB_COLUMN_ID_WEAPON + ","
-                + DB_COLUMN_ID_ARMOR + ","
                 + DB_COLUMN_ID_LEVEL + ","
                 + DB_COLUMN_TAB + " FROM " + TABLE_NAME + " WHERE " + DB_COLUMN_ID_USER + " = " + userid + " AND "+ DB_COLUMN_TAB + " = " + tab + "";
         return db.rawQuery(queryexistance, null);
