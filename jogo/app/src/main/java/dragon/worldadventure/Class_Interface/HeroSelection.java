@@ -95,36 +95,35 @@ public class HeroSelection extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
-
-        final SQLiteDatabase db =dbHandler.getReadableDatabase();
-        final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final SQLiteDatabase db = dbHandler.getReadableDatabase();
+        final UserHeroesDBTable userHeroesDBTable = new UserHeroesDBTable(db);
         final HeroDBTable heroDBTable = new HeroDBTable(db);
         final LevelDBTable levelDBTable = new LevelDBTable(db);
         final StatsDBTable statsDBTable = new StatsDBTable(db);
 
         cursorcheckexistance = userHeroesDBTable.queryCheckExistance(AppData.user.getId());
 
-        if(cursorcheckexistance.moveToNext()){
-         cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(),1);
-         if (cursorchecktab.moveToNext()){
-             AppData.userHero1=new UserHero(cursorchecktab);
-             AppData.existstab1=true;
+        if (cursorcheckexistance.moveToNext()) {
+            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(), 1);
+            if (cursorchecktab.moveToNext()) {
+                AppData.userHero1 = new UserHero(cursorchecktab);
+                AppData.existstab1 = true;
 
-             cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS,""+AppData.userHero1.getId());
-             if(cursor.moveToNext()){
-                 AppData.stats1 = new Stats(cursor);
-             }
+                cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS, "" + AppData.userHero1.getId());
+                if (cursor.moveToNext()) {
+                    AppData.stats1 = new Stats(cursor);
+                }
 
-             cursorhero =  heroDBTable.querySingle(HeroDBTable.ALL_FIELDS,""+AppData.userHero1.getHeroid());
-             if(cursorhero.moveToNext()){
-                 AppData.herotab1 = new Hero(cursorhero);
-             }
-             cursorhero = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, ""+AppData.userHero1.getLevelid());
-             if(cursorhero.moveToNext()){
-                 AppData.leveltab1 = new Level(cursorhero);
-             }
-         }
-            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(),2);
+                cursorhero = heroDBTable.querySingle(HeroDBTable.ALL_FIELDS, "" + AppData.userHero1.getHeroid());
+                if (cursorhero.moveToNext()) {
+                    AppData.herotab1 = new Hero(cursorhero);
+                }
+                cursorhero = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.userHero1.getLevelid());
+                if (cursorhero.moveToNext()) {
+                    AppData.leveltab1 = new Level(cursorhero);
+                }
+            }
+            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(), 2);
             if (cursorchecktab.moveToNext()) {
                 AppData.userHero2 = new UserHero(cursorchecktab);
                 AppData.existstab2 = true;
@@ -138,12 +137,12 @@ public class HeroSelection extends AppCompatActivity {
                     AppData.leveltab2 = new Level(cursorhero);
                 }
 
-                cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS,""+AppData.userHero2.getId());
-                if(cursor.moveToNext()){
+                cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS, "" + AppData.userHero2.getId());
+                if (cursor.moveToNext()) {
                     AppData.stats2 = new Stats(cursor);
                 }
             }
-            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(),3);
+            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(), 3);
             if (cursorchecktab.moveToNext()) {
                 AppData.userHero3 = new UserHero(cursorchecktab);
                 AppData.existstab3 = true;
@@ -157,8 +156,8 @@ public class HeroSelection extends AppCompatActivity {
                     AppData.leveltab3 = new Level(cursorhero);
                 }
 
-                cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS,""+AppData.userHero3.getId());
-                if(cursor.moveToNext()){
+                cursor = statsDBTable.querySingle(StatsDBTable.ALL_FIELDS, "" + AppData.userHero3.getId());
+                if (cursor.moveToNext()) {
                     AppData.stats3 = new Stats(cursor);
                 }
             }
@@ -167,31 +166,6 @@ public class HeroSelection extends AppCompatActivity {
         }
 
 
-
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_hero_selection, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void Check_Hero_Inventory1(View view) {

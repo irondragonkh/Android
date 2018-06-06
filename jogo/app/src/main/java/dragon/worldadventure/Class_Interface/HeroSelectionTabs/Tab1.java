@@ -76,14 +76,15 @@ public class Tab1 extends Fragment {
                 gifImageViewHero.setImageResource(R.drawable.selection_paladin_smaller);
                 imageViewHeroIcon.setImageResource(R.drawable.paladin);
             }
-            else if (AppData.herotab1.getId()==5) {
-                gifImageViewHero.setImageResource(R.drawable.selection_priest_smaller);
-                imageViewHeroIcon.setImageResource(R.drawable.priest);
-            }
             else if (AppData.herotab1.getId()==4) {
                 gifImageViewHero.setImageResource(R.drawable.selection_darkelf_smaller);
                 imageViewHeroIcon.setImageResource(R.drawable.archer);
             }
+            else if (AppData.herotab1.getId()==5) {
+                gifImageViewHero.setImageResource(R.drawable.selection_priest_smaller);
+                imageViewHeroIcon.setImageResource(R.drawable.priest);
+            }
+
 
 
 
