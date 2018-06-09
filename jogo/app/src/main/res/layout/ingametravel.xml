@@ -6,21 +6,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
-    tools:context=".Class_Interface.InGameTabs.Travel">
+    android:weightSum="7"
+    tools:context=".Class_Interface.InGame">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:layout_marginTop="16dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
         <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/GifImageViewTravel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/forestslower"/>
+          />
 
     </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TextViewAdventureText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8sp"
+            tools:text="You find a abandon house and you decide to peek inside"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:visibility="gone"/>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/CardViewAdventureBonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            app:cardElevation="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/TextViewAdventureBonus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="4sp"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+        </android.support.v7.widget.CardView>
+
+
+        <Button
+            android:id="@+id/ButtonAdvanceAdventure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/holo_blue_dark"
+            android:textAlignment="center"
+            tools:text="Take a Step"
+            android:onClick="AdventureStep"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>
