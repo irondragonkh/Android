@@ -12,6 +12,7 @@ public class AppData {
     public static Hero hero = null;
     public static Level level = null;
     public static Stats stats = null;
+    public static Villan villan=null;
     //----------------------------------------------------------------------seleção de heroi
     public static UserHero userHero1=null;
     public static UserHero userHero2=null;
@@ -40,7 +41,8 @@ public class AppData {
     public static  Hero mage=null;
     public static  Hero paladin=null;
     public static  Hero archer=null;
-    //--------------------------------------------------------------------------------
-
+    //--------------------------------------------------------------------------------travel
+    public static  double stepxp=0;
+    public static boolean enemy=false;
 
 }

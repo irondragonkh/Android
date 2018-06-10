@@ -22,8 +22,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import dragon.worldadventure.Algoritmos.TravelXPandBatlleFunc;
 import dragon.worldadventure.Base_Dados.DBHandler;
 import dragon.worldadventure.Base_Dados.LevelDBTable;
+import dragon.worldadventure.Base_Dados.StatsDBTable;
 import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 import dragon.worldadventure.Class_Interface.InGameTabs.Battle;
 import dragon.worldadventure.Class_Interface.InGameTabs.Preferences;
@@ -40,6 +42,7 @@ public class InGame extends AppCompatActivity
     final DBHandler dbHandler=new DBHandler(this);
     public Cursor cursor = null;
     public int currenthealth;
+    private TravelXPandBatlleFunc takeastep = new TravelXPandBatlleFunc();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,10 +235,38 @@ public class InGame extends AppCompatActivity
     }
 
     public void AdventureStep(View view) {
+
+        final SQLiteDatabase db =dbHandler.getReadableDatabase();
+        final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
+
         TextView textViewAdventureText = (TextView)findViewById(R.id.TextViewAdventureText);
         CardView cardView = (CardView)findViewById(R.id.CardViewAdventureBonus);
         TextView textViewAdventureBonus = (TextView) findViewById(R.id.TextViewAdventureBonus);
         Button button= (Button) findViewById(R.id.ButtonAdvanceAdventure);
+        takeastep.TaketheStep();
+        double experinciaatual;
+        if(AppData.selectedherotab1){
+            experinciaatual=AppData.stats1.getCurrentxp();
+            experinciaatual+=AppData.stepxp;
+            AppData.stats1.setCurrentxp(experinciaatual);
+            statsDBTable.update(AppData.stats1.getContentValues(),""+AppData.stats1.getId());
+            PrencherNavHeader();
 
+        }else if(AppData.selectedherotab2){
+            experinciaatual=AppData.stats2.getCurrentxp();
+            experinciaatual+=AppData.stepxp;
+            AppData.stats2.setCurrentxp(experinciaatual);
+            statsDBTable.update(AppData.stats2.getContentValues(),""+AppData.stats2.getId());
+            PrencherNavHeader();
+
+        }else if(AppData.selectedherotab3){
+            experinciaatual=AppData.stats3.getCurrentxp();
+            experinciaatual+=AppData.stepxp;
+            AppData.stats3.setCurrentxp(experinciaatual);
+            statsDBTable.update(AppData.stats3.getContentValues(),""+AppData.stats3.getId());
+            PrencherNavHeader();
+
+        }
     }
 }

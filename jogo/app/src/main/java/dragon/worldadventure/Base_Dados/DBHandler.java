@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import junit.framework.Test;
 
+import dragon.worldadventure.Algoritmos.TravelXPandBatlleFunc;
+
 public class DBHandler extends SQLiteOpenHelper {
 
    public static final int DATABASE_VERSION=2;
@@ -18,6 +20,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public DBHandler(Context context){super(context,DATABASE_NAME,null, DATABASE_VERSION);}
 
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         final UserDBTable userDBTable = new UserDBTable(db);
@@ -27,6 +30,7 @@ public class DBHandler extends SQLiteOpenHelper {
         final ArmorDBTable armorDBTable = new ArmorDBTable(db);
         final UserHeroesDBTable userHeroesDBTable = new UserHeroesDBTable(db);
         final StatsDBTable statsDBTable = new StatsDBTable(db);
+        final VillanDBTable villanDBTable = new VillanDBTable(db);
         userDBTable.create();
         heroDBTable.create();
         levelDBTable.create();
@@ -34,6 +38,8 @@ public class DBHandler extends SQLiteOpenHelper {
         armorDBTable.create();
         userHeroesDBTable.create();
         statsDBTable.create();
+        villanDBTable.create();
+        villanDBTable.seed();
         heroDBTable.seed();
         levelDBTable.seed();
 
@@ -53,6 +59,7 @@ public class DBHandler extends SQLiteOpenHelper {
             new ArmorDBTable(db).create();
             new UserHeroesDBTable(db).create();
             new StatsDBTable(db).create();
+            new VillanDBTable(db).create();
         }
     }
 }
