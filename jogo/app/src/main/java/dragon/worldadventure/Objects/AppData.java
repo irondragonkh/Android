@@ -44,5 +44,7 @@ public class AppData {
     //--------------------------------------------------------------------------------travel
     public static  double stepxp=0;
     public static boolean enemy=false;
+    public static boolean levelup=false;
+    public static double expparanextlevel=0;
 
 }

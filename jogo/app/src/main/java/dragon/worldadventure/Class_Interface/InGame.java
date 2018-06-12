@@ -3,6 +3,7 @@ package dragon.worldadventure.Class_Interface;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import dragon.worldadventure.Algoritmos.SubirdeNivel;
+import dragon.worldadventure.Algoritmos.TravelAdvanceAdventure;
 import dragon.worldadventure.Algoritmos.TravelXPandBatlleFunc;
 import dragon.worldadventure.Base_Dados.DBHandler;
 import dragon.worldadventure.Base_Dados.LevelDBTable;
@@ -33,6 +36,7 @@ import dragon.worldadventure.Class_Interface.InGameTabs.Profile;
 import dragon.worldadventure.Class_Interface.InGameTabs.Stats;
 import dragon.worldadventure.Class_Interface.InGameTabs.Travel;
 import dragon.worldadventure.Objects.AppData;
+import dragon.worldadventure.Objects.Level;
 import dragon.worldadventure.R;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -43,6 +47,8 @@ public class InGame extends AppCompatActivity
     public Cursor cursor = null;
     public int currenthealth;
     private TravelXPandBatlleFunc takeastep = new TravelXPandBatlleFunc();
+    private TravelAdvanceAdventure textofstep = new TravelAdvanceAdventure();
+    private SubirdeNivel subirdeNivel = new SubirdeNivel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +100,20 @@ public class InGame extends AppCompatActivity
         } else if (id == R.id.nav_stats) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Stats()).commit();
         } else if (id == R.id.nav_logout) {
-
+           AppData.existstab1=false;
+            AppData.existstab2=false;
+            AppData.existstab3=false;
+            AppData.createtab1=false;
+            AppData.createtab2=false;
+            AppData.createtab3=false;
+            AppData.selectedherotab1=false;
+            AppData.selectedherotab2=false;
+            AppData.selectedherotab3=false;
+            AppData.enemy=false;
+            AppData.levelup=false;
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -221,7 +240,7 @@ public class InGame extends AppCompatActivity
                 int level = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_LEVEL));
                 int exptotal = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_XP));
                 int currentxp = (int) AppData.stats3.getCurrentxp();
-                int maxhealth = (int) AppData.stats2.getHp();
+                int maxhealth = (int) AppData.stats3.getHp();
                 currenthealth=maxhealth;
                 textViewEXP.setText("EXP "+ currentxp +" / " + exptotal);
                 textViewHP.setText("HP "+ currenthealth + " / " + maxhealth);
@@ -239,34 +258,79 @@ public class InGame extends AppCompatActivity
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
         final StatsDBTable statsDBTable = new StatsDBTable(db);
+        final LevelDBTable levelDBTable = new LevelDBTable(db);
+        String steptext;
 
         TextView textViewAdventureText = (TextView)findViewById(R.id.TextViewAdventureText);
         CardView cardView = (CardView)findViewById(R.id.CardViewAdventureBonus);
         TextView textViewAdventureBonus = (TextView) findViewById(R.id.TextViewAdventureBonus);
-        Button button= (Button) findViewById(R.id.ButtonAdvanceAdventure);
+        final Button button= (Button) findViewById(R.id.ButtonAdvanceAdventure);
         takeastep.TaketheStep();
-        double experinciaatual;
-        if(AppData.selectedherotab1){
-            experinciaatual=AppData.stats1.getCurrentxp();
-            experinciaatual+=AppData.stepxp;
-            AppData.stats1.setCurrentxp(experinciaatual);
-            statsDBTable.update(AppData.stats1.getContentValues(),""+AppData.stats1.getId());
-            PrencherNavHeader();
+        steptext=textofstep.ChooseField();
 
-        }else if(AppData.selectedherotab2){
-            experinciaatual=AppData.stats2.getCurrentxp();
-            experinciaatual+=AppData.stepxp;
-            AppData.stats2.setCurrentxp(experinciaatual);
-            statsDBTable.update(AppData.stats2.getContentValues(),""+AppData.stats2.getId());
-            PrencherNavHeader();
 
-        }else if(AppData.selectedherotab3){
-            experinciaatual=AppData.stats3.getCurrentxp();
-            experinciaatual+=AppData.stepxp;
-            AppData.stats3.setCurrentxp(experinciaatual);
-            statsDBTable.update(AppData.stats3.getContentValues(),""+AppData.stats3.getId());
-            PrencherNavHeader();
+        textViewAdventureText.setVisibility(View.VISIBLE);
+        textViewAdventureText.setText(steptext);
+        cardView.setVisibility(View.VISIBLE);
+        textViewAdventureBonus.setVisibility(View.VISIBLE);
+        textViewAdventureBonus.setText("You received " + AppData.stepxp + " EXP");
 
+
+        subirdeNivel.LeveluponStep();
+        if(AppData.levelup){
+
+            subirdeNivel.AppDataLevelupParameteres();
+
+            if (AppData.selectedherotab1) {
+                statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+                userHeroesDBTable.update(AppData.userHero1.getContentValues(),""+AppData.userHero1.getId());
+              cursor= levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.leveltab1.getId()+1);
+                if(cursor.moveToNext()){
+                    AppData.leveltab1 = new Level(cursor);
+                }
+
+
+            } else if (AppData.selectedherotab2) {
+                statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+                userHeroesDBTable.update(AppData.userHero2.getContentValues(),""+AppData.userHero2.getId());
+                cursor= levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.leveltab2.getId()+1);
+                if(cursor.moveToNext()){
+                    AppData.leveltab2 = new Level(cursor);
+                }
+            } else if (AppData.selectedherotab3) {
+                statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+                userHeroesDBTable.update(AppData.userHero3.getContentValues(),""+AppData.userHero3.getId());
+                cursor= levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.leveltab3.getId()+1);
+                if(cursor.moveToNext()){
+                    AppData.leveltab3 = new Level(cursor);
+                }
+            }
+        }else {
+            subirdeNivel.GiveStepxp();
+
+
+            if (AppData.selectedherotab1) {
+                statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+
+            } else if (AppData.selectedherotab2) {
+                statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+
+            } else if (AppData.selectedherotab3) {
+                statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+
+            }
         }
+
+        PrencherNavHeader();
+        AppData.expparanextlevel=0;
+        button.setEnabled(false);
+        button.setText("Wait");
+        button.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                button.setEnabled(true);
+                button.setText("Take Another Step");
+            }
+        },5000);
     }
 }

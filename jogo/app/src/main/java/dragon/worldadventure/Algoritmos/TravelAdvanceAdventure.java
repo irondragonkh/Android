@@ -7,7 +7,7 @@ public class TravelAdvanceAdventure {
     Random r = new Random();
     TravelXPandBatlleFunc algoritmod = new TravelXPandBatlleFunc();
 
-private String ChooseField(){
+public String ChooseField(){
 
 
     int min = 1;
