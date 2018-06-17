@@ -2,7 +2,7 @@ package dragon.worldadventure.Algoritmos;
 
 import java.util.Random;
 
-public class TravelAdvanceAdventure {
+public class TravelAdvanceAdventureTexts {
 
     Random r = new Random();
     TravelXPandBatlleFunc algoritmod = new TravelXPandBatlleFunc();

@@ -46,5 +46,8 @@ public class AppData {
     public static boolean enemy=false;
     public static boolean levelup=false;
     public static double expparanextlevel=0;
+    //-------------------------------------------------------------------------------battle
+    public static double currenthp=0;
+    public static Villan battleVillan=null;
 
 }

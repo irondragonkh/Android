@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="6"
+    tools:context=".Class_Interface.BattleMode">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        tools:text="Battle" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="2"
+        android:alignmentMode="alignMargins"
+        android:columnCount="4"
+        android:columnOrderPreserved="false"
+        android:padding="16dp"
+        android:rowCount="1">
+
+        <!--Row 1 /////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+        <!--Column 1 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/GifImageViewBattleHero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:src="@drawable/archerheroicon" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <!--Column 2 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:gravity=""
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TextViewBattleHeroHP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/TextViewBattleHeroATK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/TextViewBattleHeroDefence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/TextViewBattleHeroLuck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+
+        </LinearLayout>
+
+        <!--Column 3 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TextViewBattleVillanHP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/TextViewBattleVillanATK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/TextViewBattleVillanDefence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/TextViewBattleVillanLuck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+        </LinearLayout>
+
+        <!--Column 4 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/GifImageViewBattleVillan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:src="@drawable/archerheroicon" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="2"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:padding="16dp"
+        android:rowCount="2">
+
+
+        <LinearLayout
+            android:layout_width="135dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TextViewBattleHeroHPvalue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="91dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="2"
+            android:layout_rowWeight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TextViewBattleVillanHPvalue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textSize="@dimen/Selection_StatsSize"
+                tools:text="20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="2"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_marginRight="16dp"
+                android:id="@+id/ProgressBarHeroHP"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:progress="100" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="2"
+            android:layout_rowWeight="2"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/ProgressBarVillanHP"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:progress="100"
+                android:layout_marginLeft="16dp"/>
+
+        </LinearLayout>
+    </GridLayout>
+
+    <Button
+        android:id="@+id/ButtonBattleFight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/holo_red_dark"
+        android:onClick="Fight"
+        android:text="@string/Battlefight" />
+</LinearLayout>

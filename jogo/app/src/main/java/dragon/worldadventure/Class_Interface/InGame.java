@@ -1,14 +1,10 @@
 package dragon.worldadventure.Class_Interface;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,19 +13,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Random;
+
 import dragon.worldadventure.Algoritmos.SubirdeNivel;
-import dragon.worldadventure.Algoritmos.TravelAdvanceAdventure;
+import dragon.worldadventure.Algoritmos.TravelAdvanceAdventureTexts;
 import dragon.worldadventure.Algoritmos.TravelXPandBatlleFunc;
 import dragon.worldadventure.Base_Dados.DBHandler;
 import dragon.worldadventure.Base_Dados.LevelDBTable;
 import dragon.worldadventure.Base_Dados.StatsDBTable;
 import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
+import dragon.worldadventure.Base_Dados.VillanDBTable;
 import dragon.worldadventure.Class_Interface.InGameTabs.Battle;
 import dragon.worldadventure.Class_Interface.InGameTabs.Preferences;
 import dragon.worldadventure.Class_Interface.InGameTabs.Profile;
@@ -37,6 +35,7 @@ import dragon.worldadventure.Class_Interface.InGameTabs.Stats;
 import dragon.worldadventure.Class_Interface.InGameTabs.Travel;
 import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.Objects.Level;
+import dragon.worldadventure.Objects.Villan;
 import dragon.worldadventure.R;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -47,7 +46,7 @@ public class InGame extends AppCompatActivity
     public Cursor cursor = null;
     public int currenthealth;
     private TravelXPandBatlleFunc takeastep = new TravelXPandBatlleFunc();
-    private TravelAdvanceAdventure textofstep = new TravelAdvanceAdventure();
+    private TravelAdvanceAdventureTexts textofstep = new TravelAdvanceAdventureTexts();
     private SubirdeNivel subirdeNivel = new SubirdeNivel();
 
     @Override
@@ -259,6 +258,7 @@ public class InGame extends AppCompatActivity
         final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
         final StatsDBTable statsDBTable = new StatsDBTable(db);
         final LevelDBTable levelDBTable = new LevelDBTable(db);
+        final VillanDBTable villanDBTable = new VillanDBTable(db);
         String steptext;
 
         TextView textViewAdventureText = (TextView)findViewById(R.id.TextViewAdventureText);
@@ -268,69 +268,97 @@ public class InGame extends AppCompatActivity
         takeastep.TaketheStep();
         steptext=textofstep.ChooseField();
 
+        if(AppData.enemy){
 
-        textViewAdventureText.setVisibility(View.VISIBLE);
-        textViewAdventureText.setText(steptext);
-        cardView.setVisibility(View.VISIBLE);
-        textViewAdventureBonus.setVisibility(View.VISIBLE);
-        textViewAdventureBonus.setText("You received " + AppData.stepxp + " EXP");
-
-
-        subirdeNivel.LeveluponStep();
-        if(AppData.levelup){
-
-            subirdeNivel.AppDataLevelupParameteres();
-
-            if (AppData.selectedherotab1) {
-                statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
-                userHeroesDBTable.update(AppData.userHero1.getContentValues(),""+AppData.userHero1.getId());
-              cursor= levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.leveltab1.getId()+1);
-                if(cursor.moveToNext()){
-                    AppData.leveltab1 = new Level(cursor);
-                }
+            Random r = new Random();
+            int min = 1;
+            int max = 5;
 
 
-            } else if (AppData.selectedherotab2) {
-                statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
-                userHeroesDBTable.update(AppData.userHero2.getContentValues(),""+AppData.userHero2.getId());
-                cursor= levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.leveltab2.getId()+1);
-                if(cursor.moveToNext()){
-                    AppData.leveltab2 = new Level(cursor);
-                }
-            } else if (AppData.selectedherotab3) {
-                statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
-                userHeroesDBTable.update(AppData.userHero3.getContentValues(),""+AppData.userHero3.getId());
-                cursor= levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.leveltab3.getId()+1);
-                if(cursor.moveToNext()){
-                    AppData.leveltab3 = new Level(cursor);
-                }
+            int randomnumber = r.nextInt(max - min + 1) + min;
+            cursor=villanDBTable.querySingle(VillanDBTable.ALL_FIELDS,""+randomnumber);
+            if(cursor.moveToNext()){
+                AppData.villan = new Villan(cursor);
             }
+
+
+
         }else {
-            subirdeNivel.GiveStepxp();
 
 
-            if (AppData.selectedherotab1) {
-                statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+            textViewAdventureText.setVisibility(View.VISIBLE);
+            textViewAdventureText.setText(steptext);
+            cardView.setVisibility(View.VISIBLE);
+            textViewAdventureBonus.setVisibility(View.VISIBLE);
+            textViewAdventureBonus.setText("You received " + AppData.stepxp + " EXP");
 
-            } else if (AppData.selectedherotab2) {
-                statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
 
-            } else if (AppData.selectedherotab3) {
-                statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+            subirdeNivel.LeveluponStep();
+            if (AppData.levelup) {
 
+                subirdeNivel.AppDataLevelupParameteresForExp();
+                subirdeNivel.AppDataLevelupStatsUpdate();
+
+                if (AppData.selectedherotab1) {
+                    statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+                    userHeroesDBTable.update(AppData.userHero1.getContentValues(), "" + AppData.userHero1.getId());
+                    cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab1.getId() + 1);
+                    if (cursor.moveToNext()) {
+                        AppData.leveltab1 = new Level(cursor);
+                    }
+
+
+                } else if (AppData.selectedherotab2) {
+                    statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+                    userHeroesDBTable.update(AppData.userHero2.getContentValues(), "" + AppData.userHero2.getId());
+                    cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab2.getId() + 1);
+                    if (cursor.moveToNext()) {
+                        AppData.leveltab2 = new Level(cursor);
+                    }
+                } else if (AppData.selectedherotab3) {
+                    statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+                    userHeroesDBTable.update(AppData.userHero3.getContentValues(), "" + AppData.userHero3.getId());
+                    cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab3.getId() + 1);
+                    if (cursor.moveToNext()) {
+                        AppData.leveltab3 = new Level(cursor);
+                    }
+                }
+            } else {
+                subirdeNivel.GiveStepxp();
+
+
+                if (AppData.selectedherotab1) {
+                    statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+
+                } else if (AppData.selectedherotab2) {
+                    statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+
+                } else if (AppData.selectedherotab3) {
+                    statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+
+                }
             }
         }
 
-        PrencherNavHeader();
-        AppData.expparanextlevel=0;
-        button.setEnabled(false);
-        button.setText("Wait");
-        button.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                button.setEnabled(true);
-                button.setText("Take Another Step");
-            }
-        },5000);
+        if(AppData.enemy){
+
+            Intent intent = new Intent(this, BattleMode.class);
+            startActivity(intent);
+            finish();
+
+        }else {
+            PrencherNavHeader();
+            AppData.expparanextlevel = 0;
+            button.setEnabled(false);
+            button.setText("Wait");
+            button.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    button.setEnabled(true);
+                    button.setText("Take Another Step");
+                }
+            }, 5000);
+        }
     }
+
 }

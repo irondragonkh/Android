@@ -26,8 +26,8 @@
         <activity
             android:name=".Class_Interface.HeroSelection"
             android:label="@string/title_activity_hero_selection"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Class_Interface.InGame"
             android:label="@string/title_activity_in_game"
@@ -35,8 +35,9 @@
         <activity
             android:name=".Class_Interface.CreateHero"
             android:label="@string/title_activity_create_hero"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="locked"></activity>
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Class_Interface.BattleMode"></activity>
     </application>
 
 </manifest>
