@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import dragon.worldadventure.Algoritmos.BattleDmg;
 import dragon.worldadventure.Algoritmos.VillanLevelup;
 import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.R;
@@ -21,6 +22,7 @@ public class BattleMode extends AppCompatActivity {
     Button buttonfight;
     ProgressBar herohp,villanhp;
     VillanLevelup villanLevelup=new VillanLevelup();
+    BattleDmg battleDmg = new BattleDmg();
 
 
 
@@ -67,7 +69,7 @@ public class BattleMode extends AppCompatActivity {
     }
 
     private void UpdateBattleStatus() {
-
+        battleDmg.LetsFight();
 
     }
 

@@ -49,6 +49,6 @@ public class AppData {
     //-------------------------------------------------------------------------------battle
     public static double currenthp=0;
     public static double currenthpvillan=0;
-    public static double herohealth,herodefence,villanhealth,villandefence;
-
+    public static double herolsehealth=0,herolosedefence=0,villanlosehealth=0,villanlosedefence=0,heroregainhealth=0,villanregainhealth=0,herodmg=0,villandmg=0;
+    public static boolean herocrit,villancrit;
 }
