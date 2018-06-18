@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Random;
+
+import dragon.worldadventure.Algoritmos.VillanLevelup;
 import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.R;
 import pl.droidsonroids.gif.GifImageView;
@@ -14,9 +17,12 @@ import pl.droidsonroids.gif.GifImageView;
 public class BattleMode extends AppCompatActivity {
 
     GifImageView hero,villan;
-    TextView herostatshp,herostatsatk,herostatsdefense,herostatsluck,villanstatshp,villanstatsatk,villanstatsdefence,villanstatsluck,herohealthvalue,villanhealthvalue;
+    TextView herostatshp,herostatsatk,herostatsdefense,herostatsluck,villanstatshp,villanstatsatk,villanstatsdefence,villanstatsluck,herohealthvalue,villanhealthvalue,heroname,villanname;
     Button buttonfight;
     ProgressBar herohp,villanhp;
+    VillanLevelup villanLevelup=new VillanLevelup();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,9 @@ public class BattleMode extends AppCompatActivity {
 
         herohealthvalue = (TextView) findViewById(R.id.TextViewBattleHeroHPvalue);
         villanhealthvalue = (TextView) findViewById(R.id.TextViewBattleVillanHPvalue);
+
+        heroname = (TextView)findViewById(R.id.TextViewBattleHeroName);
+        villanname = (TextView)findViewById(R.id.TextViewBattleVillanName);
 
         hero = (GifImageView) findViewById(R.id.GifImageViewBattleHero);
         villan = (GifImageView) findViewById(R.id.GifImageViewBattleVillan);
@@ -59,14 +68,16 @@ public class BattleMode extends AppCompatActivity {
 
     private void UpdateBattleStatus() {
 
+
     }
 
     private void SetStatsonHero() {
         if(AppData.selectedherotab1){
-            herostatshp.setText(""+ AppData.stats1.getHp());
-            herostatsatk.setText(""+AppData.stats1.getAtk());
-            herostatsdefense.setText(""+AppData.stats1.getDefense());
-            herostatsluck.setText(""+AppData.stats1.getLuck());
+            heroname.setText(AppData.herotab1.getHeroname());
+            herostatshp.setText("HP:   "+ AppData.stats1.getHp());
+            herostatsatk.setText("ATK:  "+AppData.stats1.getAtk());
+            herostatsdefense.setText("DFC:  "+AppData.stats1.getDefense());
+            herostatsluck.setText("LUCK: "+AppData.stats1.getLuck());
             AppData.currenthp=AppData.stats1.getHp();
             int maxhealth= (int) AppData.stats1.getHp();
             herohealthvalue.setText(""+AppData.stats1.getHp()+"/"+AppData.currenthp);
@@ -92,6 +103,7 @@ public class BattleMode extends AppCompatActivity {
 
             }
         }else if(AppData.selectedherotab2){
+            heroname.setText(AppData.herotab2.getHeroname());
             herostatshp.setText(""+ AppData.stats2.getHp());
             herostatsatk.setText(""+AppData.stats2.getAtk());
             herostatsdefense.setText(""+AppData.stats2.getDefense());
@@ -122,6 +134,7 @@ public class BattleMode extends AppCompatActivity {
             }
 
         }else if(AppData.selectedherotab3){
+            heroname.setText(AppData.herotab3.getHeroname());
             herostatshp.setText(""+ AppData.stats3.getHp());
             herostatsatk.setText(""+AppData.stats3.getAtk());
             herostatsdefense.setText(""+AppData.stats3.getDefense());
@@ -155,6 +168,37 @@ public class BattleMode extends AppCompatActivity {
     }
 
     private void SetStatsonVillan() {
+        villanLevelup.levelupVillan();
+
+        villanname.setText(AppData.villan.getVillanname());
+        villanstatshp.setText(""+ AppData.villan.getHp()+"   :HP");
+        villanstatsatk.setText(""+AppData.villan.getAtk()+"  :ATK");
+        villanstatsdefence.setText(""+AppData.villan.getDefense()+"  :DFC");
+        villanstatsluck.setText(""+AppData.villan.getLuck()+" :LUCK");
+        AppData.currenthpvillan=AppData.villan.getHp();
+        int maxhealth= (int) AppData.villan.getHp();
+        villanhealthvalue.setText(""+AppData.villan.getHp()+"/"+AppData.currenthpvillan);
+
+        villanhp.setMax(maxhealth);
+        villanhp.setProgress(maxhealth);
+
+        Random r = new Random();
+        int min = 1;
+        int max = 5;
+
+       int number= r.nextInt(max - min + 1) + min;
+       if(number==1){
+           villan.setImageResource(R.drawable.villan0smaller);
+       }else if(number==2){
+           villan.setImageResource(R.drawable.villan1smaller);
+       }else if(number==3){
+           villan.setImageResource(R.drawable.villan2smaller);
+       }else if(number==4){
+           villan.setImageResource(R.drawable.villan3smaller);
+       }else if(number==5){
+           villan.setImageResource(R.drawable.villan4smaller);
+       }
+
 
     }
 }

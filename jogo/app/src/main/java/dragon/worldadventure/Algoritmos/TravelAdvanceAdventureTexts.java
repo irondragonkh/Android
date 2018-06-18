@@ -5,7 +5,7 @@ import java.util.Random;
 public class TravelAdvanceAdventureTexts {
 
     Random r = new Random();
-    TravelXPandBatlleFunc algoritmod = new TravelXPandBatlleFunc();
+    TravelXPRewards algoritmod = new TravelXPRewards();
 
 public String ChooseField(){
 

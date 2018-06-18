@@ -4,7 +4,7 @@ import java.util.Random;
 
 import dragon.worldadventure.Objects.AppData;
 
-public class TravelXPandBatlleFunc {
+public class TravelXPRewards {
 
     private double userheroluck;
     private boolean reroll=false;
@@ -17,10 +17,7 @@ public class TravelXPandBatlleFunc {
         int min = 1;
         int max = 10000;
 
-
-        int randomnumber = r.nextInt(max - min + 1) + min;
-
-        return randomnumber;
+        return r.nextInt(max - min + 1) + min;
     }
 
     private void GetLuck (){

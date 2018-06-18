@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="6"
+    android:weightSum="8"
     tools:context=".Class_Interface.BattleMode">
 
     <TextView
@@ -16,6 +16,34 @@
         android:textAlignment="center"
         android:textSize="34sp"
         tools:text="Battle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+        <TextView
+            android:id="@+id/TextViewBattleHeroName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginLeft="16dp"
+            tools:text="asfsgsg" />
+
+        <TextView
+            android:id="@+id/TextViewBattleVillanName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="24sp"
+            android:layout_marginRight="16dp"
+            tools:text=" dasfsdfd" />
+    </LinearLayout>
 
     <GridLayout
         android:layout_width="match_parent"

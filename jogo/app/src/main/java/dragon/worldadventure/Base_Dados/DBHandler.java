@@ -1,13 +1,8 @@
 package dragon.worldadventure.Base_Dados;
 
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import junit.framework.Test;
-
-import dragon.worldadventure.Algoritmos.TravelXPandBatlleFunc;
 
 public class DBHandler extends SQLiteOpenHelper {
 

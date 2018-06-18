@@ -22,7 +22,7 @@ import java.util.Random;
 
 import dragon.worldadventure.Algoritmos.SubirdeNivel;
 import dragon.worldadventure.Algoritmos.TravelAdvanceAdventureTexts;
-import dragon.worldadventure.Algoritmos.TravelXPandBatlleFunc;
+import dragon.worldadventure.Algoritmos.TravelXPRewards;
 import dragon.worldadventure.Base_Dados.DBHandler;
 import dragon.worldadventure.Base_Dados.LevelDBTable;
 import dragon.worldadventure.Base_Dados.StatsDBTable;
@@ -45,7 +45,7 @@ public class InGame extends AppCompatActivity
     final DBHandler dbHandler=new DBHandler(this);
     public Cursor cursor = null;
     public int currenthealth;
-    private TravelXPandBatlleFunc takeastep = new TravelXPandBatlleFunc();
+    private TravelXPRewards takeastep = new TravelXPRewards();
     private TravelAdvanceAdventureTexts textofstep = new TravelAdvanceAdventureTexts();
     private SubirdeNivel subirdeNivel = new SubirdeNivel();
 
@@ -341,7 +341,6 @@ public class InGame extends AppCompatActivity
         }
 
         if(AppData.enemy){
-
             Intent intent = new Intent(this, BattleMode.class);
             startActivity(intent);
             finish();

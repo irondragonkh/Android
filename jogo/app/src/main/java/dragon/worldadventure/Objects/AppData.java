@@ -43,11 +43,12 @@ public class AppData {
     public static  Hero archer=null;
     //--------------------------------------------------------------------------------travel
     public static  double stepxp=0;
-    public static boolean enemy=false;
+    public static boolean enemy=true;
     public static boolean levelup=false;
     public static double expparanextlevel=0;
     //-------------------------------------------------------------------------------battle
     public static double currenthp=0;
-    public static Villan battleVillan=null;
+    public static double currenthpvillan=0;
+    public static double herohealth,herodefence,villanhealth,villandefence;
 
 }

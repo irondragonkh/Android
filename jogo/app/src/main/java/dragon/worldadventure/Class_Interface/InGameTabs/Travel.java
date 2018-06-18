@@ -42,7 +42,7 @@ public class Travel extends Fragment {
         button.setText(R.string.TravelButton);
 
         int min = 1;
-        int max = 2;
+        int max = 3;
 
         Random r = new Random();
         int randomnumber = r.nextInt(max - min + 1) + min;
@@ -51,6 +51,8 @@ public class Travel extends Fragment {
             gifImageView.setImageResource(R.drawable.forestslower);
         }else if(randomnumber==2){
             gifImageView.setImageResource(R.drawable.cityslower);
+        }else if(randomnumber==3){
+            gifImageView.setImageResource(R.drawable.waterfall);
         }
     }
 }
