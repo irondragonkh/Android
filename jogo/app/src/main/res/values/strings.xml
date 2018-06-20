@@ -48,4 +48,6 @@
     <string name="CreateHeroButton_SelectHero">Select Hero</string>
     <string name="TravelButton">Take a Step</string>
     <string name="Battlefight">FIGHT</string>
+    <string name="BattleEndButton">End</string>
+    <string name="BattleGameOverButton">GameOver</string>
 </resources>

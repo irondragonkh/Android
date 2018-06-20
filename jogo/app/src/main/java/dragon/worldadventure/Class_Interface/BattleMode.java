@@ -1,7 +1,10 @@
 package dragon.worldadventure.Class_Interface;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,12 +21,13 @@ import pl.droidsonroids.gif.GifImageView;
 public class BattleMode extends AppCompatActivity {
 
     GifImageView hero,villan;
-    TextView herostatshp,herostatsatk,herostatsdefense,herostatsluck,villanstatshp,villanstatsatk,villanstatsdefence,villanstatsluck,herohealthvalue,villanhealthvalue,heroname,villanname;
-    Button buttonfight;
+    CardView cardviewhero,cardviewvillan;
+    TextView herostatshp,herostatsatk,herostatsdefense,herostatsluck,villanstatshp,villanstatsatk,villanstatsdefence,villanstatsluck,herohealthvalue,villanhealthvalue,heroname,villanname,herofightresult,villanfightresult;
+    Button buttonfight,buttonfightend,buttongameover;
     ProgressBar herohp,villanhp;
     VillanLevelup villanLevelup=new VillanLevelup();
     BattleDmg battleDmg = new BattleDmg();
-
+    Handler threadhandler=new Handler();
 
 
     @Override
@@ -47,14 +51,35 @@ public class BattleMode extends AppCompatActivity {
         heroname = (TextView)findViewById(R.id.TextViewBattleHeroName);
         villanname = (TextView)findViewById(R.id.TextViewBattleVillanName);
 
+        herofightresult=(TextView)findViewById(R.id.TextViewBattleHeroFight);
+        villanfightresult=(TextView) findViewById(R.id.TextViewBattleVillanFight);
+
+        cardviewhero=(CardView) findViewById(R.id.CardViewBattleHeroFight);
+        cardviewvillan=(CardView) findViewById(R.id.CardViewBattleVillanFight);
+
         hero = (GifImageView) findViewById(R.id.GifImageViewBattleHero);
         villan = (GifImageView) findViewById(R.id.GifImageViewBattleVillan);
 
         buttonfight = (Button) findViewById(R.id.ButtonBattleFight);
+        buttonfightend=(Button) findViewById(R.id.ButtonBattleEnd);
+        buttongameover=(Button) findViewById(R.id.ButtonBattleGameOver);
 
         herohp=(ProgressBar) findViewById(R.id.ProgressBarHeroHP);
         villanhp=(ProgressBar) findViewById(R.id.ProgressBarVillanHP);
 
+        villanLevelup.levelupVillan();
+
+        AppData.currenthpvillan=AppData.villan.getHp();
+        AppData.villandefense=AppData.villan.getDefense();
+        if(AppData.selectedherotab1) {
+            AppData.currenthp=AppData.stats1.getHp();
+            AppData.herodefense = AppData.stats1.getDefense();
+        }else if(AppData.selectedherotab2){
+            AppData.currenthp=AppData.stats2.getHp();
+            AppData.herodefense = AppData.stats2.getDefense();
+        }else if(AppData.selectedherotab3)
+            AppData.currenthp=AppData.stats3.getHp();
+            AppData.herodefense = AppData.stats3.getDefense();
         SetStatsonHero();
         SetStatsonVillan();
     }
@@ -71,21 +96,176 @@ public class BattleMode extends AppCompatActivity {
     private void UpdateBattleStatus() {
         battleDmg.LetsFight();
 
+
+        threadhandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if(AppData.currenthpvillan-AppData.herodmg<=0){//heroi mata vilao
+                    AppData.currenthpvillan=0;
+                    cardviewhero.setVisibility(View.VISIBLE);
+                    cardviewvillan.setVisibility(View.GONE);
+                    if(AppData.herocrit){
+                        herofightresult.setText("You critical strike the villan for " + AppData.herodmg + " damage and you killed him");
+                    }else {
+                        herofightresult.setText("You strike the villan for " + AppData.herodmg + " damage and you killed him");
+                    }
+
+                    buttonfight.setVisibility(View.GONE);
+                    buttonfightend.setVisibility(View.VISIBLE);
+
+
+                }else if(AppData.currenthp-AppData.villandmg<=0){//vilao matar o heroi
+                    AppData.currenthp=0;
+                    cardviewhero.setVisibility(View.GONE);
+                    cardviewvillan.setVisibility(View.VISIBLE);
+                    if(AppData.villancrit){
+                        villanfightresult.setText("Villan critical strike you for " + AppData.villandmg + " damage and killed you");
+                    }else {
+                        villanfightresult.setText("Villan strike you for " + AppData.villandmg + " damage and killed you");
+                    }
+                    buttonfight.setVisibility(View.GONE);
+                    buttongameover.setVisibility(View.VISIBLE);
+
+                }else{
+                    AppData.currenthp=AppData.currenthp-AppData.villandmg;
+                    AppData.currenthpvillan=AppData.currenthpvillan-AppData.herodmg;
+                    AppData.herodefense=AppData.herodefense-AppData.herolosedefence;
+                    AppData.villandefense=AppData.villandefense-AppData.villanlosedefence;
+                    if(AppData.currenthp+AppData.heroregainhealth>AppData.heromaxhealth){
+                        AppData.currenthp=AppData.heromaxhealth;
+                    }else{
+                        AppData.currenthp=AppData.currenthp+AppData.heroregainhealth;
+                    }
+                    if(AppData.currenthpvillan+AppData.villanregainhealth>AppData.villanmaxhealth){
+                        AppData.currenthpvillan=AppData.villanmaxhealth;
+                    }else{
+                        AppData.currenthpvillan=AppData.currenthpvillan+AppData.villanregainhealth;
+                    }
+                    cardviewhero.setVisibility(View.VISIBLE);
+                    cardviewvillan.setVisibility(View.VISIBLE);
+
+                    if(AppData.herocrit){
+                        if(AppData.heroregainhealth>0){
+                            if(AppData.herolosedefence>0){
+                                herofightresult.setText("You critical strike the enemy for "+AppData.herodmg+", You regain "+AppData.heroregainhealth+" life, You lost "+ AppData.herolosedefence+ " defence");
+                            }else{
+                                herofightresult.setText("You critical strike the enemy for "+AppData.herodmg+", You regain "+AppData.heroregainhealth+" life");
+                            }
+                        }else{
+                            if(AppData.herolosedefence>0){
+                                herofightresult.setText("You critical strike the enemy for "+AppData.herodmg+", You lost "+ AppData.herolosedefence+ " defence");
+                            }else {
+                                herofightresult.setText("You critical strike the enemy for " + AppData.herodmg);
+                            }
+                        }
+                    }else{
+                        if(AppData.herodmg>0) {
+                            if (AppData.heroregainhealth > 0) {
+                                if (AppData.herolosedefence > 0) {
+                                    herofightresult.setText("You strike the enemy for " + AppData.herodmg + ", You regain " + AppData.heroregainhealth + " life, You lost " + AppData.herolosedefence + " defence");
+                                } else {
+                                    herofightresult.setText("You strike the enemy for " + AppData.herodmg + ", You regain " + AppData.heroregainhealth + " life");
+                                }
+                            } else {
+                                if (AppData.herolosedefence > 0) {
+                                    herofightresult.setText("You strike the enemy for " + AppData.herodmg + ", You lost " + AppData.herolosedefence + " defence");
+                                }else {
+                                    herofightresult.setText("You strike the enemy for " + AppData.herodmg);
+                                }
+                            }
+                        }else{
+                            if(AppData.heroregainhealth>0){
+                                if (AppData.herolosedefence > 0) {
+                                    herofightresult.setText(" You regain " + AppData.heroregainhealth + " life, You lost " + AppData.herolosedefence + " defence");
+                                } else {
+                                    herofightresult.setText(" You regain " + AppData.heroregainhealth + " life");
+                                }
+                            } else {
+                                if (AppData.herolosedefence > 0) {
+                                    herofightresult.setText(" You lost " + AppData.herolosedefence + " defence");
+                                }
+                            }
+
+                        }
+
+                    }
+                    if(AppData.villancrit){
+                        if(AppData.villanregainhealth>0){
+                            if(AppData.villanlosedefence>0){
+                                villanfightresult.setText("Villan critical strike you for "+AppData.villandmg+", Villan regain "+AppData.villanregainhealth+" life, Villan lost "+ AppData.villanlosedefence+ " defence");
+                            }else{
+                                villanfightresult.setText("Villan critical strike you for "+AppData.villandmg+", Villan regain "+AppData.villanregainhealth+" life");
+                            }
+                        }else{
+                            if(AppData.villanlosedefence>0){
+                                villanfightresult.setText("Villan critical strike you for "+AppData.villandmg+", Villan lost "+ AppData.villanlosedefence+ " defence");
+                            }else {
+                                villanfightresult.setText("Villan critical strike you for " + AppData.villandmg);
+                            }
+                        }
+                    }else{
+                        if(AppData.villandmg>0) {
+                            if (AppData.villanregainhealth > 0) {
+                                if (AppData.villanlosedefence > 0) {
+                                    villanfightresult.setText("Villan strike you for " + AppData.villandmg + ", Villan regain " + AppData.villanregainhealth + " life, Villan lost " + AppData.villanlosedefence + " defence");
+                                } else {
+                                    villanfightresult.setText("Villan strike you for " + AppData.villandmg + ", Villan regain " + AppData.villanregainhealth + " life");
+                                }
+                            } else {
+                                if (AppData.villanlosedefence > 0) {
+                                    villanfightresult.setText("Villan strike you for " + AppData.villandmg + ", Villan lost " + AppData.villanlosedefence + " defence");
+                                }else {
+                                    villanfightresult.setText("Villan strike you for " + AppData.villandmg);
+                                }
+                            }
+                        }else{
+                            if(AppData.villanregainhealth>0){
+                                if (AppData.villanlosedefence > 0) {
+                                    villanfightresult.setText(" Villan regain " + AppData.villanregainhealth + " life, Villan lost " + AppData.villanlosedefence + " defence");
+                                } else {
+                                    villanfightresult.setText(" Villan regain " + AppData.villanregainhealth + " life");
+                                }
+                            } else {
+                                if (AppData.villanlosedefence > 0) {
+                                    villanfightresult.setText(" Villan lost " + AppData.villanlosedefence + " defence");
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+                int health=(int) AppData.currenthp;
+                int healthvillan=(int) AppData.currenthpvillan;
+                herohp.setProgress(health);
+                villanhp.setProgress(healthvillan);
+                herostatsdefense.setText("DFC:   "+AppData.herodefense);
+                villanstatsdefence.setText(""+AppData.villandefense+"   :DFC");
+                herostatshp.setText("HP:     "+ AppData.currenthp);
+                villanstatshp.setText(""+ AppData.currenthpvillan+"     :HP");
+
+                AppData.herolosedefence=0;AppData.heroregainhealth=0;AppData.herodmg=0;AppData.herocrit=false;
+                AppData.villanlosedefence=0;AppData.villanregainhealth=0;AppData.villandmg=0;AppData.villancrit=false;
+            }
+        });
+
     }
 
     private void SetStatsonHero() {
         if(AppData.selectedherotab1){
             heroname.setText(AppData.herotab1.getHeroname());
-            herostatshp.setText("HP:   "+ AppData.stats1.getHp());
-            herostatsatk.setText("ATK:  "+AppData.stats1.getAtk());
-            herostatsdefense.setText("DFC:  "+AppData.stats1.getDefense());
+            herostatshp.setText("HP:     "+ AppData.currenthp);
+            herostatsatk.setText("ATK:   "+AppData.stats1.getAtk());
+            herostatsdefense.setText("DFC:   "+AppData.herodefense);
             herostatsluck.setText("LUCK: "+AppData.stats1.getLuck());
-            AppData.currenthp=AppData.stats1.getHp();
+
             int maxhealth= (int) AppData.stats1.getHp();
+            AppData.heromaxhealth=AppData.stats1.getHp();
+            int currenthealth=(int)AppData.currenthp;
             herohealthvalue.setText(""+AppData.stats1.getHp()+"/"+AppData.currenthp);
 
             herohp.setMax(maxhealth);
-            herohp.setProgress(maxhealth);
+            herohp.setProgress(currenthealth);
 
 
             if(AppData.herotab1.getId()==1){
@@ -106,16 +286,18 @@ public class BattleMode extends AppCompatActivity {
             }
         }else if(AppData.selectedherotab2){
             heroname.setText(AppData.herotab2.getHeroname());
-            herostatshp.setText(""+ AppData.stats2.getHp());
-            herostatsatk.setText(""+AppData.stats2.getAtk());
-            herostatsdefense.setText(""+AppData.stats2.getDefense());
-            herostatsluck.setText(""+AppData.stats2.getLuck());
-            AppData.currenthp=AppData.stats2.getHp();
+            herostatshp.setText("HP:     "+ AppData.currenthp);
+            herostatsatk.setText("ATK:   "+AppData.stats2.getAtk());
+            herostatsdefense.setText("DFC:   "+AppData.herodefense);
+            herostatsluck.setText("LUCK: "+AppData.stats2.getLuck());
+
             int maxhealth= (int) AppData.stats2.getHp();
+            AppData.heromaxhealth=AppData.stats2.getHp();
+            int currenthealth=(int)AppData.currenthp;
             herohealthvalue.setText(""+AppData.stats2.getHp()+"/"+AppData.currenthp);
 
             herohp.setMax(maxhealth);
-            herohp.setProgress(maxhealth);
+            herohp.setProgress(currenthealth);
 
 
             if(AppData.herotab2.getId()==1){
@@ -137,17 +319,18 @@ public class BattleMode extends AppCompatActivity {
 
         }else if(AppData.selectedherotab3){
             heroname.setText(AppData.herotab3.getHeroname());
-            herostatshp.setText(""+ AppData.stats3.getHp());
-            herostatsatk.setText(""+AppData.stats3.getAtk());
-            herostatsdefense.setText(""+AppData.stats3.getDefense());
-            herostatsluck.setText(""+AppData.stats3.getLuck());
-            AppData.currenthp=AppData.stats3.getHp();
+            herostatshp.setText("HP:     "+ AppData.currenthp);
+            herostatsatk.setText("ATK:   "+AppData.stats3.getAtk());
+            herostatsdefense.setText("DFC:   "+AppData.herodefense);
+            herostatsluck.setText("LUCK: "+AppData.stats3.getLuck());
+
             int maxhealth= (int) AppData.stats3.getHp();
+            AppData.heromaxhealth=AppData.stats3.getHp();
+            int currenthealth=(int)AppData.currenthp;
             herohealthvalue.setText(""+AppData.stats3.getHp()+"/"+AppData.currenthp);
 
             herohp.setMax(maxhealth);
-            herohp.setProgress(maxhealth);
-
+            herohp.setProgress(currenthealth);
 
             if(AppData.herotab3.getId()==1){
                 hero.setImageResource(R.drawable.warriorheroicon);
@@ -170,19 +353,21 @@ public class BattleMode extends AppCompatActivity {
     }
 
     private void SetStatsonVillan() {
-        villanLevelup.levelupVillan();
+
 
         villanname.setText(AppData.villan.getVillanname());
-        villanstatshp.setText(""+ AppData.villan.getHp()+"   :HP");
-        villanstatsatk.setText(""+AppData.villan.getAtk()+"  :ATK");
-        villanstatsdefence.setText(""+AppData.villan.getDefense()+"  :DFC");
+        villanstatshp.setText(""+ AppData.currenthpvillan+"     :HP");
+        villanstatsatk.setText(""+AppData.villan.getAtk()+"   :ATK");
+        villanstatsdefence.setText(""+AppData.villandefense+"   :DFC");
         villanstatsluck.setText(""+AppData.villan.getLuck()+" :LUCK");
         AppData.currenthpvillan=AppData.villan.getHp();
         int maxhealth= (int) AppData.villan.getHp();
+        AppData.villanmaxhealth=AppData.villan.getHp();
+        int currenthealth=(int)AppData.currenthpvillan;
         villanhealthvalue.setText(""+AppData.villan.getHp()+"/"+AppData.currenthpvillan);
 
         villanhp.setMax(maxhealth);
-        villanhp.setProgress(maxhealth);
+        villanhp.setProgress(currenthealth);
 
         Random r = new Random();
         int min = 1;
@@ -202,6 +387,12 @@ public class BattleMode extends AppCompatActivity {
        }
 
 
+    }
+
+    public void EndFight(View view) {
+    }
+
+    public void GameOver(View view) {
     }
 }
 /**

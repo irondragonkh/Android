@@ -47,8 +47,11 @@ public class AppData {
     public static boolean levelup=false;
     public static double expparanextlevel=0;
     //-------------------------------------------------------------------------------battle
-    public static double currenthp=0;
-    public static double currenthpvillan=0;
-    public static double herolsehealth=0,herolosedefence=0,villanlosehealth=0,villanlosedefence=0,heroregainhealth=0,villanregainhealth=0,herodmg=0,villandmg=0;
-    public static boolean herocrit,villancrit;
+    public static double currenthp=0;//variavel de batalha da vida do heroi
+    public static double currenthpvillan=0;//variavel de batalha da vida do vilao
+    public static double heromaxhealth=0,villanmaxhealth=0;
+    public static double herodefense=0;
+    public static double villandefense=0;
+    public static double herolosedefence=0,villanlosedefence=0,heroregainhealth=0,villanregainhealth=0,herodmg=0,villandmg=0;
+    public static boolean herocrit=false,villancrit=false;
 }
