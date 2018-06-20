@@ -1,6 +1,8 @@
 package dragon.worldadventure.Class_Interface;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,12 +15,23 @@ import android.widget.TextView;
 import java.util.Random;
 
 import dragon.worldadventure.Algoritmos.BattleDmg;
+import dragon.worldadventure.Algoritmos.BattleRewards;
+import dragon.worldadventure.Algoritmos.SubirdeNivel;
 import dragon.worldadventure.Algoritmos.VillanLevelup;
+import dragon.worldadventure.Base_Dados.DBHandler;
+import dragon.worldadventure.Base_Dados.LevelDBTable;
+import dragon.worldadventure.Base_Dados.StatsDBTable;
+import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
+import dragon.worldadventure.Base_Dados.VillanDBTable;
 import dragon.worldadventure.Objects.AppData;
+import dragon.worldadventure.Objects.Level;
 import dragon.worldadventure.R;
 import pl.droidsonroids.gif.GifImageView;
 
 public class BattleMode extends AppCompatActivity {
+
+    final DBHandler dbHandler=new DBHandler(this);
+    public Cursor cursor = null;
 
     GifImageView hero,villan;
     CardView cardviewhero,cardviewvillan;
@@ -28,6 +41,8 @@ public class BattleMode extends AppCompatActivity {
     VillanLevelup villanLevelup=new VillanLevelup();
     BattleDmg battleDmg = new BattleDmg();
     Handler threadhandler=new Handler();
+    SubirdeNivel subirdeNivel = new SubirdeNivel();
+    BattleRewards battleRewards= new BattleRewards();
 
 
     @Override
@@ -390,9 +405,85 @@ public class BattleMode extends AppCompatActivity {
     }
 
     public void EndFight(View view) {
+
+        final SQLiteDatabase db =dbHandler.getReadableDatabase();
+        final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
+        final LevelDBTable levelDBTable = new LevelDBTable(db);
+
+        battleRewards.GiveRewards();
+        subirdeNivel.LeveluponStep();
+
+        if (AppData.levelup)
+
+    {
+
+        subirdeNivel.AppDataLevelupParameteresForExp();
+        subirdeNivel.AppDataLevelupStatsUpdate();
+
+        if (AppData.selectedherotab1) {
+            statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+            userHeroesDBTable.update(AppData.userHero1.getContentValues(), "" + AppData.userHero1.getId());
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab1.getId() + 1);
+            if (cursor.moveToNext()) {
+                AppData.leveltab1 = new Level(cursor);
+            }
+
+
+        } else if (AppData.selectedherotab2) {
+            statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+            userHeroesDBTable.update(AppData.userHero2.getContentValues(), "" + AppData.userHero2.getId());
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab2.getId() + 1);
+            if (cursor.moveToNext()) {
+                AppData.leveltab2 = new Level(cursor);
+            }
+        } else if (AppData.selectedherotab3) {
+            statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+            userHeroesDBTable.update(AppData.userHero3.getContentValues(), "" + AppData.userHero3.getId());
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab3.getId() + 1);
+            if (cursor.moveToNext()) {
+                AppData.leveltab3 = new Level(cursor);
+            }
+        }
+    }else{
+            subirdeNivel.GiveStepxp();
+
+            if (AppData.selectedherotab1) {
+                statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+
+            } else if (AppData.selectedherotab2) {
+                statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+
+            } else if (AppData.selectedherotab3) {
+                statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+
+            }
+        }
+        Intent intent = new Intent(this,InGame.class);
+        startActivity(intent);
+        finish();
     }
 
     public void GameOver(View view) {
+        final SQLiteDatabase db =dbHandler.getReadableDatabase();
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
+
+        if (AppData.selectedherotab1) {
+            AppData.stats1.setCurrentxp(0);
+            statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+
+        } else if (AppData.selectedherotab2) {
+            AppData.stats2.setCurrentxp(0);
+            statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+
+        } else if (AppData.selectedherotab3) {
+            AppData.stats3.setCurrentxp(0);
+            statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
+
+        }
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 /**

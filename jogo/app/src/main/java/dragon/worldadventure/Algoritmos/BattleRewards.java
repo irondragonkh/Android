@@ -20,8 +20,8 @@ public class BattleRewards {
         lucknumber=NumeroAleatorio();
         if(lucknumber<2000){
             Random r = new Random();
-            int min = 1;
-            int max = 3;
+            int min = 5;
+            int max = 9;
 
 
             int randomnumber = r.nextInt(max - min + 1) + min;
@@ -31,8 +31,8 @@ public class BattleRewards {
         else if(lucknumber<6000){
 
             Random r = new Random();
-            int min = 5;
-            int max = 8;
+            int min = 9;
+            int max = 13;
 
 
             int randomnumber = r.nextInt(max - min + 1) + min;
@@ -42,8 +42,8 @@ public class BattleRewards {
         else if(lucknumber<7000){
 
             Random r = new Random();
-            int min = 8;
-            int max = 12;
+            int min = 13;
+            int max = 17;
 
 
             int randomnumber = r.nextInt(max - min + 1) + min;
@@ -53,8 +53,8 @@ public class BattleRewards {
         }
         else if(lucknumber<9501){
             Random r = new Random();
-            int min = 12;
-            int max = 16;
+            int min = 17;
+            int max = 25;
 
 
             int randomnumber = r.nextInt(max - min + 1) + min;
