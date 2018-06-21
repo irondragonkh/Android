@@ -101,10 +101,10 @@ public class HeroSelection extends AppCompatActivity {
         final LevelDBTable levelDBTable = new LevelDBTable(db);
         final StatsDBTable statsDBTable = new StatsDBTable(db);
 
-        cursorcheckexistance = userHeroesDBTable.queryCheckExistance(AppData.user.getId());
+        cursorcheckexistance = userHeroesDBTable.querySingleUser(UserHeroesDBTable.ALL_FIELDs,""+AppData.user.getId());
 
         if (cursorcheckexistance.moveToNext()) {
-            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(), 1);
+            cursorchecktab = userHeroesDBTable.queryCheckTab(UserHeroesDBTable.ALL_FIELDs, ""+AppData.user.getId(),""+1);
             if (cursorchecktab.moveToNext()) {
                 AppData.userHero1 = new UserHero(cursorchecktab);
                 AppData.existstab1 = true;
@@ -123,7 +123,7 @@ public class HeroSelection extends AppCompatActivity {
                     AppData.leveltab1 = new Level(cursorhero);
                 }
             }
-            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(), 2);
+            cursorchecktab = userHeroesDBTable.queryCheckTab(UserHeroesDBTable.ALL_FIELDs, ""+AppData.user.getId(),""+2);
             if (cursorchecktab.moveToNext()) {
                 AppData.userHero2 = new UserHero(cursorchecktab);
                 AppData.existstab2 = true;
@@ -142,7 +142,7 @@ public class HeroSelection extends AppCompatActivity {
                     AppData.stats2 = new Stats(cursor);
                 }
             }
-            cursorchecktab = userHeroesDBTable.queryCheckTab(AppData.user.getId(), 3);
+            cursorchecktab = userHeroesDBTable.queryCheckTab(UserHeroesDBTable.ALL_FIELDs, ""+AppData.user.getId(),""+3);
             if (cursorchecktab.moveToNext()) {
                 AppData.userHero3 = new UserHero(cursorchecktab);
                 AppData.existstab3 = true;
@@ -249,21 +249,21 @@ public class HeroSelection extends AppCompatActivity {
 
 
     public void StartAdventure1(View view) {
-        AppData.selectedherotab1=true;
+       // AppData.selectedherotab1=true;
         Intent intent = new Intent(this,InGame.class);
         startActivity(intent);
         finish();
     }
 
     public void StartAdventure2(View view) {
-        AppData.selectedherotab2=true;
+      //  AppData.selectedherotab2=true;
         Intent intent = new Intent(this,InGame.class);
         startActivity(intent);
         finish();
     }
 
     public void StartAdventure3(View view) {
-        AppData.selectedherotab3=true;
+      //  AppData.selectedherotab3=true;
         Intent intent = new Intent(this,InGame.class);
         startActivity(intent);
         finish();

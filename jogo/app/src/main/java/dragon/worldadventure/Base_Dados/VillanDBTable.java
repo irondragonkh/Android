@@ -38,6 +38,10 @@ public class VillanDBTable implements BaseColumns {
                 + DB_COLUMN_LUCK + " INTEGER NOT NULL "
                 +")");
     }
+    public Cursor query (String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+        Cursor cursor = db.query(TABLE_NAME, columns, selection, selectionArgs, groupBy, having, orderBy);
+        return cursor;
+    }
 
     public Cursor query(String[] projection, String selection, String[] selectionArgs, String orderBy){
         return db.query(TABLE_NAME,projection,selection,selectionArgs,null,null,orderBy);
@@ -61,6 +65,7 @@ public class VillanDBTable implements BaseColumns {
     public int update(ContentValues contentValues, String id){
         return db.update(TABLE_NAME,contentValues,_ID + "=?",new String[]{id});
     }
+
 
     public void seed(){
         insert(new Villan("Whitewash",5,5,5,3).getContentValues());

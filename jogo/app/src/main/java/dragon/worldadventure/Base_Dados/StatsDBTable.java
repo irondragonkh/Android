@@ -42,6 +42,10 @@ public class StatsDBTable implements BaseColumns {
                 + " FOREIGN KEY ( " + DB_COLUMN_ID_USERHERO +" ) REFERENCES " + UserHeroesDBTable.TABLE_NAME + " ( "+ UserHeroesDBTable._ID +" ) "
                 +" ) ");
     }
+    public Cursor query (String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+        Cursor cursor = db.query(TABLE_NAME, columns, selection, selectionArgs, groupBy, having, orderBy);
+        return cursor;
+    }
 
     public Cursor query(String[] projection, String selection, String[] selectionArgs, String orderBy){
         return db.query(TABLE_NAME,projection,selection,selectionArgs,null,null,orderBy);

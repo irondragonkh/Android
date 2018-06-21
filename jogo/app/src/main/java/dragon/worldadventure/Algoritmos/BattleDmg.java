@@ -3,6 +3,7 @@ package dragon.worldadventure.Algoritmos;
 import java.util.Random;
 
 import dragon.worldadventure.Objects.AppData;
+import dragon.worldadventure.Objects.Hero;
 
 public class BattleDmg {
 
@@ -51,17 +52,10 @@ public class BattleDmg {
 
     private void DecisonofActionHero(){
         if(AppData.selectedherotab1) {
-            for (double i = 0; i < AppData.herotab1.getLuck(); i++) {
-                numero = NumeroAleatorio();
-                if (numero < 500) {
-
-                } else if (numero < 750) {
-                    Dealdmg(true, false);
-                } else {
-                    Heal(true, false);
-                }
-            }
+            DecisaoAtaqueHeroi(AppData.herotab1);
         }else if(AppData.selectedherotab2){
+
+
             for (double i = 0; i < AppData.herotab2.getLuck(); i++) {
                 numero = NumeroAleatorio();
                 if (numero < 500) {
@@ -281,6 +275,19 @@ public class BattleDmg {
 
         }
 
+    }
+
+    private void DecisaoAtaqueHeroi(Hero hero){
+        for (double i = 0; i < hero.getLuck(); i++) {
+            numero = NumeroAleatorio();
+            if (numero < 500) {
+
+            } else if (numero < 750) {
+                Dealdmg(true, false);
+            } else {
+                Heal(true, false);
+            }
+        }
     }
 
     private void Heal(boolean hero,boolean villan){

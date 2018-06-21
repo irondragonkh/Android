@@ -53,12 +53,15 @@ public class UserHeroesDBTable implements BaseColumns {
     public Cursor querySingle(String[] projection,String id){
         return query(projection,_ID + "=?",new String[]{id},null);
     }
-
-    public Cursor queryCheckExistance(long userid) {
-        String queryexistance = " SELECT " + _ID + " FROM " + TABLE_NAME + " WHERE " + DB_COLUMN_ID_USER + "=" + userid + "";
-        return db.rawQuery(queryexistance, null);
+    public Cursor querySingleUser(String[] projection,String id){
+        return query(projection,DB_COLUMN_ID_USER + "=?",new String[]{id},null);
     }
-    public Cursor queryCheckTab(long userid,int tab) {
+
+    public Cursor queryCheckTab(String[] projection,String id,String tab){
+        return query(projection,_ID + "=? AND "+DB_COLUMN_TAB + "=?",new String[]{id,tab},null);
+    }
+
+   /* public Cursor queryCheckTab(long userid,int tab) {
         String queryexistance = " SELECT " +  _ID + ","
                 + DB_COLUMN_USERHERONAME + ","
                 + DB_COLUMN__ID_HERO + ","
@@ -66,7 +69,7 @@ public class UserHeroesDBTable implements BaseColumns {
                 + DB_COLUMN_ID_LEVEL + ","
                 + DB_COLUMN_TAB + " FROM " + TABLE_NAME + " WHERE " + DB_COLUMN_ID_USER + " = " + userid + " AND "+ DB_COLUMN_TAB + " = " + tab + "";
         return db.rawQuery(queryexistance, null);
-    }
+    }*/
 
     //CRUD
 
