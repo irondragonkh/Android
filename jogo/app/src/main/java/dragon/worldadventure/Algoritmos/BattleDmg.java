@@ -51,135 +51,54 @@ public class BattleDmg {
     }
 
     private void DecisonofActionHero(){
-        if(AppData.selectedherotab1) {
-            DecisaoAtaqueHeroi(AppData.herotab1);
-        }else if(AppData.selectedherotab2){
-
-
-            for (double i = 0; i < AppData.herotab2.getLuck(); i++) {
+            for (double i = 0; i < AppData.selectedhero.getLuck(); i++) {
                 numero = NumeroAleatorio();
                 if (numero < 500) {
 
                 } else if (numero < 750) {
-                    Heal(true, false);
-                } else {
                     Dealdmg(true, false);
+                } else {
+                    Heal(true, false);
                 }
             }
-        }else if (AppData.selectedherotab3){
-            for (double i = 0; i < AppData.herotab2.getLuck(); i++) {
-                numero = NumeroAleatorio();
-                if (numero < 500) {
-
-                } else if (numero < 750) {
-                    Heal(true, false);
-                } else {
-                    Dealdmg(true, false);
-                }
-            }
-        }
     }
 
     private void Dealdmg(boolean hero,boolean villan){
         stack++;
         if(hero) {
-                if (AppData.selectedherotab1) {
+
 
                     if (stack > 2) {
-                        AppData.herocrit=true;
-                        critico=AppData.stats1.getAtk()*2;
+                        AppData.herocrit = true;
+                        critico = AppData.selectedstats.getAtk() * 2;
 
-                        if (critico> AppData.villandefense) {
-                            AppData.herodmg=critico-AppData.villandefense;
+                        if (critico > AppData.villandefense) {
+                            AppData.herodmg = critico - AppData.villandefense;
 
-                        }else if(critico==AppData.villandefense){
-                            hipotesebaixararmadura=100;
-                            LowerDefence(true,false,hipotesebaixararmadura);
-
-                        }else if(critico<AppData.villandefense){
-                            hipotesebaixararmadura=(critico*100)/AppData.villandefense;
-                            LowerDefence(true,false,hipotesebaixararmadura);
-                        }
-                    } else {
-
-                        if (AppData.stats1.getAtk() > AppData.villandefense) {
-                            AppData.herodmg = AppData.stats1.getAtk() - AppData.villandefense;
-
-                        } else if (AppData.stats1.getAtk() == AppData.villandefense) {
+                        } else if (critico == AppData.villandefense) {
                             hipotesebaixararmadura = 100;
                             LowerDefence(true, false, hipotesebaixararmadura);
 
-                        } else if (AppData.stats1.getAtk() < AppData.villandefense) {
-                            hipotesebaixararmadura = (AppData.stats1.getAtk() * 100) / AppData.villandefense;
+                        } else if (critico < AppData.villandefense) {
+                            hipotesebaixararmadura = (critico * 100) / AppData.villandefense;
                             LowerDefence(true, false, hipotesebaixararmadura);
-                        }
-                    }
-                } else if (AppData.selectedherotab2) {
-                    if (stack > 2) {
-                        AppData.herocrit=true;
-                        critico=AppData.stats2.getAtk()*2;
-
-                        if (critico> AppData.villandefense) {
-                            AppData.herodmg=critico-AppData.villandefense;
-
-                        }else if(critico==AppData.villandefense){
-                            hipotesebaixararmadura=100;
-                            LowerDefence(true,false,hipotesebaixararmadura);
-
-                        }else if(critico<AppData.villandefense){
-                            hipotesebaixararmadura=(critico*100)/AppData.villandefense;
-                            LowerDefence(true,false,hipotesebaixararmadura);
                         }
                     } else {
 
-                        if (AppData.stats2.getAtk() > AppData.villandefense) {
-                            AppData.herodmg = AppData.stats2.getAtk() - AppData.villandefense;
+                        if (AppData.selectedstats.getAtk() > AppData.villandefense) {
+                            AppData.herodmg = AppData.selectedstats.getAtk() - AppData.villandefense;
 
-                        } else if (AppData.stats2.getAtk() == AppData.villandefense) {
+                        } else if (AppData.selectedstats.getAtk() == AppData.villandefense) {
                             hipotesebaixararmadura = 100;
                             LowerDefence(true, false, hipotesebaixararmadura);
 
-                        } else if (AppData.stats2.getAtk() < AppData.villandefense) {
-                            hipotesebaixararmadura = (AppData.stats2.getAtk() * 100) / AppData.villandefense;
+                        } else if (AppData.selectedstats.getAtk() < AppData.villandefense) {
+                            hipotesebaixararmadura = (AppData.selectedstats.getAtk() * 100) / AppData.villandefense;
                             LowerDefence(true, false, hipotesebaixararmadura);
                         }
                     }
 
-                } else if (AppData.selectedherotab3) {
-                    if (stack > 2) {
-                        AppData.herocrit=true;
-                        critico=AppData.stats3.getAtk()*2;
-
-                        if (critico> AppData.villandefense) {
-                            AppData.herodmg=critico-AppData.villandefense;
-
-                        }else if(critico==AppData.villandefense){
-                            hipotesebaixararmadura=100;
-                            LowerDefence(true,false,hipotesebaixararmadura);
-
-                        }else if(critico<AppData.villandefense){
-                            hipotesebaixararmadura=(critico*100)/AppData.villandefense;
-                            LowerDefence(true,false,hipotesebaixararmadura);
-                        }
-                    } else {
-
-                        if (AppData.stats3.getAtk() > AppData.villandefense) {
-                            AppData.herodmg = AppData.stats3.getAtk() - AppData.villandefense;
-
-                        } else if (AppData.stats3.getAtk() == AppData.villandefense) {
-                            hipotesebaixararmadura = 100;
-                            LowerDefence(true, false, hipotesebaixararmadura);
-
-                        } else if (AppData.stats3.getAtk() < AppData.villandefense) {
-                            hipotesebaixararmadura = (AppData.stats3.getAtk() * 100) / AppData.villandefense;
-                            LowerDefence(true, false, hipotesebaixararmadura);
-                        }
-                    }
-
-            }
         }else if (villan) {
-            if (AppData.selectedherotab1) {
-
                 if (stack > 2) {
                     AppData.villancrit=true;
                     critico=AppData.villan.getAtk()*2;
@@ -209,84 +128,6 @@ public class BattleDmg {
                         LowerDefence(false, true, hipotesebaixararmadura);
                     }
                 }
-            } else if (AppData.selectedherotab2) {
-                if (stack > 2) {
-                    AppData.villancrit=true;
-                    critico=AppData.villan.getAtk()*2;
-
-                    if (critico> AppData.herodefense) {
-                        AppData.villandmg=critico-AppData.herodefense;
-
-                    }else if(critico==AppData.herodefense){
-                        hipotesebaixararmadura=100;
-                        LowerDefence(false,true,hipotesebaixararmadura);
-
-                    }else if(critico<AppData.herodefense){
-                        hipotesebaixararmadura=(critico*100)/AppData.herodefense;
-                        LowerDefence(false,true,hipotesebaixararmadura);
-                    }
-                } else {
-
-                    if (AppData.villan.getAtk() > AppData.herodefense) {
-                        AppData.villandmg = AppData.villan.getAtk() - AppData.herodefense;
-
-                    } else if (AppData.villan.getAtk() == AppData.herodefense) {
-                        hipotesebaixararmadura = 100;
-                        LowerDefence(false, true, hipotesebaixararmadura);
-
-                    } else if (AppData.villan.getAtk() < AppData.herodefense) {
-                        hipotesebaixararmadura = (AppData.villan.getAtk() * 100) / AppData.herodefense;
-                        LowerDefence(false, true, hipotesebaixararmadura);
-                    }
-                }
-
-            } else if (AppData.selectedherotab3) {
-                if (stack > 2) {
-                    AppData.villancrit=true;
-                    critico=AppData.villan.getAtk()*2;
-
-                    if (critico> AppData.herodefense) {
-                        AppData.villandmg=critico-AppData.herodefense;
-
-                    }else if(critico==AppData.herodefense){
-                        hipotesebaixararmadura=100;
-                        LowerDefence(false,true,hipotesebaixararmadura);
-
-                    }else if(critico<AppData.herodefense){
-                        hipotesebaixararmadura=(critico*100)/AppData.herodefense;
-                        LowerDefence(false,true,hipotesebaixararmadura);
-                    }
-                } else {
-
-                    if (AppData.villan.getAtk() > AppData.herodefense) {
-                        AppData.villandmg = AppData.villan.getAtk() - AppData.herodefense;
-
-                    } else if (AppData.villan.getAtk() == AppData.herodefense) {
-                        hipotesebaixararmadura = 100;
-                        LowerDefence(false, true, hipotesebaixararmadura);
-
-                    } else if (AppData.villan.getAtk() < AppData.herodefense) {
-                        hipotesebaixararmadura = (AppData.villan.getAtk() * 100) / AppData.herodefense;
-                        LowerDefence(false, true, hipotesebaixararmadura);
-                    }
-                }
-
-            }
-
-        }
-
-    }
-
-    private void DecisaoAtaqueHeroi(Hero hero){
-        for (double i = 0; i < hero.getLuck(); i++) {
-            numero = NumeroAleatorio();
-            if (numero < 500) {
-
-            } else if (numero < 750) {
-                Dealdmg(true, false);
-            } else {
-                Heal(true, false);
-            }
         }
     }
 

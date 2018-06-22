@@ -86,15 +86,10 @@ public class BattleMode extends AppCompatActivity {
 
         AppData.currenthpvillan=AppData.villan.getHp();
         AppData.villandefense=AppData.villan.getDefense();
-        if(AppData.selectedherotab1) {
-            AppData.currenthp=AppData.stats1.getHp();
-            AppData.herodefense = AppData.stats1.getDefense();
-        }else if(AppData.selectedherotab2){
-            AppData.currenthp=AppData.stats2.getHp();
-            AppData.herodefense = AppData.stats2.getDefense();
-        }else if(AppData.selectedherotab3)
-            AppData.currenthp=AppData.stats3.getHp();
-            AppData.herodefense = AppData.stats3.getDefense();
+
+            AppData.currenthp=AppData.selectedstats.getHp();
+            AppData.herodefense = AppData.selectedstats.getDefense();
+
         SetStatsonHero();
         SetStatsonVillan();
     }
@@ -267,104 +262,38 @@ public class BattleMode extends AppCompatActivity {
     }
 
     private void SetStatsonHero() {
-        if(AppData.selectedherotab1){
-            heroname.setText(AppData.herotab1.getHeroname());
-            herostatshp.setText("HP:     "+ AppData.currenthp);
-            herostatsatk.setText("ATK:   "+AppData.stats1.getAtk());
-            herostatsdefense.setText("DFC:   "+AppData.herodefense);
-            herostatsluck.setText("LUCK: "+AppData.stats1.getLuck());
 
-            int maxhealth= (int) AppData.stats1.getHp();
-            AppData.heromaxhealth=AppData.stats1.getHp();
+            heroname.setText(AppData.selectedhero.getHeroname());
+            herostatshp.setText("HP:     "+ AppData.currenthp);
+            herostatsatk.setText("ATK:   "+AppData.selectedstats.getAtk());
+            herostatsdefense.setText("DFC:   "+AppData.herodefense);
+            herostatsluck.setText("LUCK: "+AppData.selectedstats.getLuck());
+
+            int maxhealth= (int) AppData.selectedstats.getHp();
+            AppData.heromaxhealth=AppData.selectedstats.getHp();
             int currenthealth=(int)AppData.currenthp;
-            herohealthvalue.setText(""+AppData.stats1.getHp()+"/"+AppData.currenthp);
+            herohealthvalue.setText(""+AppData.selectedstats.getHp()+"/"+AppData.currenthp);
 
             herohp.setMax(maxhealth);
             herohp.setProgress(currenthealth);
 
 
-            if(AppData.herotab1.getId()==1){
+            if(AppData.selectedhero.getId()==1){
                 hero.setImageResource(R.drawable.warriorheroicon);
 
-            }else if(AppData.herotab1.getId()==2){
+            }else if(AppData.selectedhero.getId()==2){
                 hero.setImageResource(R.drawable.mageheroicon);
 
-            }else if(AppData.herotab1.getId()==3){
+            }else if(AppData.selectedhero.getId()==3){
                 hero.setImageResource(R.drawable.paladinheroicon);
 
-            }else if(AppData.herotab1.getId()==4){
+            }else if(AppData.selectedhero.getId()==4){
                 hero.setImageResource(R.drawable.archerheroicon);
 
-            }else if(AppData.herotab1.getId()==5){
+            }else if(AppData.selectedhero.getId()==5){
                 hero.setImageResource(R.drawable.priestheroicon);
 
             }
-        }else if(AppData.selectedherotab2){
-            heroname.setText(AppData.herotab2.getHeroname());
-            herostatshp.setText("HP:     "+ AppData.currenthp);
-            herostatsatk.setText("ATK:   "+AppData.stats2.getAtk());
-            herostatsdefense.setText("DFC:   "+AppData.herodefense);
-            herostatsluck.setText("LUCK: "+AppData.stats2.getLuck());
-
-            int maxhealth= (int) AppData.stats2.getHp();
-            AppData.heromaxhealth=AppData.stats2.getHp();
-            int currenthealth=(int)AppData.currenthp;
-            herohealthvalue.setText(""+AppData.stats2.getHp()+"/"+AppData.currenthp);
-
-            herohp.setMax(maxhealth);
-            herohp.setProgress(currenthealth);
-
-
-            if(AppData.herotab2.getId()==1){
-                hero.setImageResource(R.drawable.warriorheroicon);
-
-            }else if(AppData.herotab2.getId()==2){
-                hero.setImageResource(R.drawable.mageheroicon);
-
-            }else if(AppData.herotab2.getId()==3){
-                hero.setImageResource(R.drawable.paladinheroicon);
-
-            }else if(AppData.herotab2.getId()==4){
-                hero.setImageResource(R.drawable.archerheroicon);
-
-            }else if(AppData.herotab2.getId()==5){
-                hero.setImageResource(R.drawable.priestheroicon);
-
-            }
-
-        }else if(AppData.selectedherotab3){
-            heroname.setText(AppData.herotab3.getHeroname());
-            herostatshp.setText("HP:     "+ AppData.currenthp);
-            herostatsatk.setText("ATK:   "+AppData.stats3.getAtk());
-            herostatsdefense.setText("DFC:   "+AppData.herodefense);
-            herostatsluck.setText("LUCK: "+AppData.stats3.getLuck());
-
-            int maxhealth= (int) AppData.stats3.getHp();
-            AppData.heromaxhealth=AppData.stats3.getHp();
-            int currenthealth=(int)AppData.currenthp;
-            herohealthvalue.setText(""+AppData.stats3.getHp()+"/"+AppData.currenthp);
-
-            herohp.setMax(maxhealth);
-            herohp.setProgress(currenthealth);
-
-            if(AppData.herotab3.getId()==1){
-                hero.setImageResource(R.drawable.warriorheroicon);
-
-            }else if(AppData.herotab3.getId()==2){
-                hero.setImageResource(R.drawable.mageheroicon);
-
-            }else if(AppData.herotab3.getId()==3){
-                hero.setImageResource(R.drawable.paladinheroicon);
-
-            }else if(AppData.herotab3.getId()==4){
-                hero.setImageResource(R.drawable.archerheroicon);
-
-            }else if(AppData.herotab3.getId()==5){
-                hero.setImageResource(R.drawable.priestheroicon);
-
-            }
-
-        }
     }
 
     private void SetStatsonVillan() {
@@ -413,6 +342,7 @@ public class BattleMode extends AppCompatActivity {
 
         battleRewards.GiveRewards();
         subirdeNivel.LeveluponStep();
+        AppData.enemy=false;
 
         if (AppData.levelup)
 
@@ -421,43 +351,21 @@ public class BattleMode extends AppCompatActivity {
         subirdeNivel.AppDataLevelupParameteresForExp();
         subirdeNivel.AppDataLevelupStatsUpdate();
 
-        if (AppData.selectedherotab1) {
-            statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
-            userHeroesDBTable.update(AppData.userHero1.getContentValues(), "" + AppData.userHero1.getId());
-            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab1.getId() + 1);
+
+            statsDBTable.update(AppData.selectedstats.getContentValues(), "" + AppData.selectedstats.getId());
+            userHeroesDBTable.update(AppData.selectedusedhero.getContentValues(), "" + AppData.selectedusedhero.getId());
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.selectedlevel.getId() + 1);
             if (cursor.moveToNext()) {
-                AppData.leveltab1 = new Level(cursor);
+                AppData.selectedlevel = new Level(cursor);
             }
 
-
-        } else if (AppData.selectedherotab2) {
-            statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
-            userHeroesDBTable.update(AppData.userHero2.getContentValues(), "" + AppData.userHero2.getId());
-            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab2.getId() + 1);
-            if (cursor.moveToNext()) {
-                AppData.leveltab2 = new Level(cursor);
-            }
-        } else if (AppData.selectedherotab3) {
-            statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
-            userHeroesDBTable.update(AppData.userHero3.getContentValues(), "" + AppData.userHero3.getId());
-            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab3.getId() + 1);
-            if (cursor.moveToNext()) {
-                AppData.leveltab3 = new Level(cursor);
-            }
-        }
     }else{
+
             subirdeNivel.GiveStepxp();
 
-            if (AppData.selectedherotab1) {
-                statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
 
-            } else if (AppData.selectedherotab2) {
-                statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
+                statsDBTable.update(AppData.selectedstats.getContentValues(), "" + AppData.selectedstats.getId());
 
-            } else if (AppData.selectedherotab3) {
-                statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
-
-            }
         }
         Intent intent = new Intent(this,InGame.class);
         startActivity(intent);
@@ -465,22 +373,13 @@ public class BattleMode extends AppCompatActivity {
     }
 
     public void GameOver(View view) {
+        AppData.enemy=false;
         final SQLiteDatabase db =dbHandler.getReadableDatabase();
         final StatsDBTable statsDBTable = new StatsDBTable(db);
 
-        if (AppData.selectedherotab1) {
-            AppData.stats1.setCurrentxp(0);
-            statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
+            AppData.selectedstats.setCurrentxp(0);
+            statsDBTable.update(AppData.selectedstats.getContentValues(), "" + AppData.selectedstats.getId());
 
-        } else if (AppData.selectedherotab2) {
-            AppData.stats2.setCurrentxp(0);
-            statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
-
-        } else if (AppData.selectedherotab3) {
-            AppData.stats3.setCurrentxp(0);
-            statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
-
-        }
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
         finish();

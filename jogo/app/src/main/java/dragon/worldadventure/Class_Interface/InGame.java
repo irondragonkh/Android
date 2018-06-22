@@ -105,9 +105,6 @@ public class InGame extends AppCompatActivity
             AppData.createtab1=false;
             AppData.createtab2=false;
             AppData.createtab3=false;
-            AppData.selectedherotab1=false;
-            AppData.selectedherotab2=false;
-            AppData.selectedherotab3=false;
             AppData.enemy=false;
             AppData.levelup=false;
             Intent intent = new Intent(this,LoginActivity.class);
@@ -139,33 +136,31 @@ public class InGame extends AppCompatActivity
 
 
 
-        if(AppData.selectedherotab1){
-
-            textViewHeroname.setText(AppData.herotab1.getHeroname());
+            textViewHeroname.setText(AppData.selectedhero.getHeroname());
             // gifImageViewHero.setImageResource(R.drawable....);
-            if(AppData.herotab1.getId()==1){
+            if(AppData.selectedhero.getId()==1){
                 gifImageViewHero.setImageResource(R.drawable.warriorheroicon);
 
-            }else if(AppData.herotab1.getId()==2){
+            }else if(AppData.selectedhero.getId()==2){
                 gifImageViewHero.setImageResource(R.drawable.mageheroicon);
 
-            }else if(AppData.herotab1.getId()==3){
+            }else if(AppData.selectedhero.getId()==3){
                 gifImageViewHero.setImageResource(R.drawable.paladinheroicon);
 
-            }else if(AppData.herotab1.getId()==4){
+            }else if(AppData.selectedhero.getId()==4){
                 gifImageViewHero.setImageResource(R.drawable.archerheroicon);
 
-            }else if(AppData.herotab1.getId()==5){
+            }else if(AppData.selectedhero.getId()==5){
                 gifImageViewHero.setImageResource(R.drawable.priestheroicon);
 
             }
-            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.userHero1.getLevelid());
+            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.selectedusedhero.getLevelid());
 
             if(cursor.moveToNext()){
                 int level = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_LEVEL));
                 int exptotal = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_XP));
-                int currentxp = (int) AppData.stats1.getCurrentxp();
-                int maxhealth = (int) AppData.stats1.getHp();
+                int currentxp = (int) AppData.selectedstats.getCurrentxp();
+                int maxhealth = (int) AppData.selectedstats.getHp();
                 currenthealth=maxhealth;
                 textViewEXP.setText("EXP "+ currentxp +" / " + exptotal);
                 textViewHP.setText("HP "+ currenthealth + " / " + maxhealth);
@@ -176,80 +171,7 @@ public class InGame extends AppCompatActivity
                 progressBarHP.setProgress(maxhealth);
             }
 
-        }else if(AppData.selectedherotab2){
 
-            textViewHeroname.setText(AppData.herotab2.getHeroname());
-            // gifImageViewHero.setImageResource(R.drawable....);
-            if(AppData.herotab2.getId()==1){
-                gifImageViewHero.setImageResource(R.drawable.warriorheroicon);
-
-            }else if(AppData.herotab2.getId()==2){
-                gifImageViewHero.setImageResource(R.drawable.mageheroicon);
-
-            }else if(AppData.herotab2.getId()==3){
-                gifImageViewHero.setImageResource(R.drawable.paladinheroicon);
-
-            }else if(AppData.herotab2.getId()==4){
-                gifImageViewHero.setImageResource(R.drawable.archerheroicon);
-
-            }else if(AppData.herotab2.getId()==5){
-                gifImageViewHero.setImageResource(R.drawable.priestheroicon);
-
-            }
-
-            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.userHero2.getLevelid());
-
-            if(cursor.moveToNext()){
-                int level = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_LEVEL));
-                int exptotal = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_XP));
-                int currentxp = (int) AppData.stats2.getCurrentxp();
-                int maxhealth = (int) AppData.stats2.getHp();
-                currenthealth=maxhealth;
-                textViewEXP.setText("EXP "+ currentxp +" / " + exptotal);
-                textViewHP.setText("HP "+ currenthealth + " / " + maxhealth);
-                textView.setText("Level " + level);
-                progressBarEXP.setMax(exptotal);
-                progressBarEXP.setProgress(currentxp);
-                progressBarHP.setMax((maxhealth));
-                progressBarHP.setProgress(maxhealth);
-            }
-        }else{
-
-            textViewHeroname.setText(AppData.herotab3.getHeroname());
-            // gifImageViewHero.setImageResource(R.drawable....);
-            if(AppData.herotab3.getId()==1){
-                gifImageViewHero.setImageResource(R.drawable.warriorheroicon);
-
-            }else if(AppData.herotab3.getId()==2){
-                gifImageViewHero.setImageResource(R.drawable.mageheroicon);
-
-            }else if(AppData.herotab3.getId()==3){
-                gifImageViewHero.setImageResource(R.drawable.paladinheroicon);
-
-            }else if(AppData.herotab3.getId()==4){
-                gifImageViewHero.setImageResource(R.drawable.archerheroicon);
-
-            }else if(AppData.herotab3.getId()==5){
-                gifImageViewHero.setImageResource(R.drawable.priestheroicon);
-
-            }
-            cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS,""+AppData.userHero3.getLevelid());
-
-            if(cursor.moveToNext()){
-                int level = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_LEVEL));
-                int exptotal = cursor.getInt(cursor.getColumnIndex(LevelDBTable.DB_COLUMN_XP));
-                int currentxp = (int) AppData.stats3.getCurrentxp();
-                int maxhealth = (int) AppData.stats3.getHp();
-                currenthealth=maxhealth;
-                textViewEXP.setText("EXP "+ currentxp +" / " + exptotal);
-                textViewHP.setText("HP "+ currenthealth + " / " + maxhealth);
-                textView.setText("Level " + level);
-                progressBarEXP.setMax(exptotal);
-                progressBarEXP.setProgress(currentxp);
-                progressBarHP.setMax((maxhealth));
-                progressBarHP.setProgress(maxhealth);
-            }
-        }
     }
 
     public void AdventureStep(View view) {
@@ -299,44 +221,18 @@ public class InGame extends AppCompatActivity
                 subirdeNivel.AppDataLevelupParameteresForExp();
                 subirdeNivel.AppDataLevelupStatsUpdate();
 
-                if (AppData.selectedherotab1) {
-                    statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
-                    userHeroesDBTable.update(AppData.userHero1.getContentValues(), "" + AppData.userHero1.getId());
-                    cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab1.getId() + 1);
+
+                    statsDBTable.update(AppData.selectedstats.getContentValues(), "" + AppData.selectedstats.getId());
+                    userHeroesDBTable.update(AppData.selectedusedhero.getContentValues(), "" + AppData.selectedusedhero.getId());
+                    cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.selectedlevel.getId() + 1);
                     if (cursor.moveToNext()) {
-                        AppData.leveltab1 = new Level(cursor);
+                        AppData.selectedlevel = new Level(cursor);
                     }
 
-
-                } else if (AppData.selectedherotab2) {
-                    statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
-                    userHeroesDBTable.update(AppData.userHero2.getContentValues(), "" + AppData.userHero2.getId());
-                    cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab2.getId() + 1);
-                    if (cursor.moveToNext()) {
-                        AppData.leveltab2 = new Level(cursor);
-                    }
-                } else if (AppData.selectedherotab3) {
-                    statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
-                    userHeroesDBTable.update(AppData.userHero3.getContentValues(), "" + AppData.userHero3.getId());
-                    cursor = levelDBTable.querySingle(LevelDBTable.ALL_FIELDS, "" + AppData.leveltab3.getId() + 1);
-                    if (cursor.moveToNext()) {
-                        AppData.leveltab3 = new Level(cursor);
-                    }
-                }
             } else {
                 subirdeNivel.GiveStepxp();
 
-
-                if (AppData.selectedherotab1) {
-                    statsDBTable.update(AppData.stats1.getContentValues(), "" + AppData.stats1.getId());
-
-                } else if (AppData.selectedherotab2) {
-                    statsDBTable.update(AppData.stats2.getContentValues(), "" + AppData.stats2.getId());
-
-                } else if (AppData.selectedherotab3) {
-                    statsDBTable.update(AppData.stats3.getContentValues(), "" + AppData.stats3.getId());
-
-                }
+                    statsDBTable.update(AppData.selectedstats.getContentValues(), "" + AppData.selectedstats.getId());
             }
         }
 

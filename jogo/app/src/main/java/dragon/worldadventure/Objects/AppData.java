@@ -13,6 +13,11 @@ public class AppData {
     public static Level level = null;
     public static Stats stats = null;
     public static Villan villan=null;
+    //----------------------------------------------------------------------para usar durante o jogo
+    public static UserHero selectedusedhero=null;
+    public static Hero  selectedhero=null;
+    public static Stats selectedstats=null;
+    public static Level selectedlevel=null;
     //----------------------------------------------------------------------seleção de heroi
     public static UserHero userHero1=null;
     public static UserHero userHero2=null;
@@ -32,9 +37,6 @@ public class AppData {
     public static boolean createtab1=false;
     public static boolean createtab2=false;
     public static boolean createtab3=false;
-    public static boolean selectedherotab1=false;
-    public static boolean selectedherotab2=false;
-    public static boolean selectedherotab3=false;
     //--------------------------------------------------------------------------criação de herois
     public static  Hero warrior=null;
     public static  Hero priest=null;

@@ -249,21 +249,30 @@ public class HeroSelection extends AppCompatActivity {
 
 
     public void StartAdventure1(View view) {
-       // AppData.selectedherotab1=true;
+        AppData.selectedusedhero= AppData.userHero1;
+        AppData.selectedhero=AppData.herotab1;
+        AppData.selectedstats=AppData.stats1;
+        AppData.selectedlevel=AppData.leveltab1;
         Intent intent = new Intent(this,InGame.class);
         startActivity(intent);
         finish();
     }
 
     public void StartAdventure2(View view) {
-      //  AppData.selectedherotab2=true;
+        AppData.selectedusedhero= AppData.userHero2;
+        AppData.selectedhero=AppData.herotab2;
+        AppData.selectedstats=AppData.stats2;
+        AppData.selectedlevel=AppData.leveltab2;
         Intent intent = new Intent(this,InGame.class);
         startActivity(intent);
         finish();
     }
 
     public void StartAdventure3(View view) {
-      //  AppData.selectedherotab3=true;
+        AppData.selectedusedhero= AppData.userHero3;
+        AppData.selectedhero=AppData.herotab3;
+        AppData.selectedstats=AppData.stats3;
+        AppData.selectedlevel=AppData.leveltab3;
         Intent intent = new Intent(this,InGame.class);
         startActivity(intent);
         finish();

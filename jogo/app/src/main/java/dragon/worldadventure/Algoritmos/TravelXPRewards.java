@@ -21,13 +21,7 @@ public class TravelXPRewards {
     }
 
     private void GetLuck (){
-        if (AppData.selectedherotab1){
-           userheroluck= AppData.stats1.getLuck();
-        }else if(AppData.selectedherotab2){
-            userheroluck= AppData.stats2.getLuck();
-        }else if(AppData.selectedherotab3){
-            userheroluck= AppData.stats3.getLuck();
-        }
+           userheroluck= AppData.selectedstats.getLuck();
     }
 
     private void Lucktime(){
@@ -67,7 +61,7 @@ public class TravelXPRewards {
 
             AppData.stepxp= (double) randomnumber;
         }
-        else if(lucknumber<7000){
+        else if(lucknumber<8000){
 
             AppData.enemy=true;
 
@@ -81,8 +75,6 @@ public class TravelXPRewards {
             int randomnumber = r.nextInt(max - min + 1) + min;
 
             AppData.stepxp= (double) randomnumber;
-        }else if((reroll==false)&&(lucknumber<9500)){
-            reroll=true;
         }
     }
 
