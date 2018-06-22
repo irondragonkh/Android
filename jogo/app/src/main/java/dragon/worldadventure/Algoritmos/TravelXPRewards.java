@@ -6,6 +6,11 @@ import dragon.worldadventure.Objects.AppData;
 
 public class TravelXPRewards {
 
+    public static final int ValorSorte1 = 2000;
+    public static final int ValorSorte2 = 6000;
+    public static final int ValorSorte3 = 8000;
+    public static final int ValorSorte4 = 9501;
+    public static final int ValorMaximoSorte = 10000;
     private double userheroluck;
     private boolean reroll=false;
     private int lucknumber=0;
@@ -15,7 +20,7 @@ public class TravelXPRewards {
     private int NumeroAleatorio(){
         Random r = new Random();
         int min = 1;
-        int max = 10000;
+        int max = ValorMaximoSorte;
 
         return r.nextInt(max - min + 1) + min;
     }
@@ -47,10 +52,10 @@ public class TravelXPRewards {
      * @return
      */
     private void DefineBonus(){
-        if(lucknumber<2000){
+        if(lucknumber< ValorSorte1){
 
         }
-        else if(lucknumber<6000){
+        else if(lucknumber< ValorSorte2){
 
             Random r = new Random();
             int min = 1;
@@ -61,12 +66,12 @@ public class TravelXPRewards {
 
             AppData.stepxp= (double) randomnumber;
         }
-        else if(lucknumber<8000){
+        else if(lucknumber< ValorSorte3){
 
             AppData.enemy=true;
 
         }
-        else if(lucknumber<9501){
+        else if(lucknumber< ValorSorte4){
             Random r = new Random();
             int min = 5;
             int max = 10;

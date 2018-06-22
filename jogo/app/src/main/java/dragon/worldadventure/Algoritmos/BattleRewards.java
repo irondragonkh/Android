@@ -6,6 +6,10 @@ import dragon.worldadventure.Objects.AppData;
 
 public class BattleRewards {
 
+    public static final int Sortevalor1 = 2000;
+    public static final int SorteValor2 = 6000;
+    public static final int SorteValor3 = 7000;
+    public static final int SorteValor4 = 9501;
     private int lucknumber=0;
 
     private int NumeroAleatorio(){
@@ -18,7 +22,7 @@ public class BattleRewards {
 
     private void DefineBonus(){
         lucknumber=NumeroAleatorio();
-        if(lucknumber<2000){
+        if(lucknumber< Sortevalor1){
             Random r = new Random();
             int min = 5;
             int max = 9;
@@ -28,7 +32,7 @@ public class BattleRewards {
 
             AppData.stepxp= (double) randomnumber;
         }
-        else if(lucknumber<6000){
+        else if(lucknumber< SorteValor2){
 
             Random r = new Random();
             int min = 9;
@@ -39,7 +43,7 @@ public class BattleRewards {
 
             AppData.stepxp= (double) randomnumber;
         }
-        else if(lucknumber<7000){
+        else if(lucknumber< SorteValor3){
 
             Random r = new Random();
             int min = 13;
@@ -51,7 +55,7 @@ public class BattleRewards {
             AppData.stepxp= (double) randomnumber;
 
         }
-        else if(lucknumber<9501){
+        else if(lucknumber< SorteValor4){
             Random r = new Random();
             int min = 17;
             int max = 25;

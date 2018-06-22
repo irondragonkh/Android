@@ -3,10 +3,14 @@ package dragon.worldadventure.Algoritmos;
 import java.util.Random;
 
 import dragon.worldadventure.Objects.AppData;
-import dragon.worldadventure.Objects.Hero;
 
 public class BattleDmg {
 
+    public static final int SorteBatalhavalorMAX = 1000;
+    public static final int AlgoritmoValorMinimo = 500;
+    public static final int AlgoritmoValorMedio = 750;
+    public static final int QuantidadedeXquetemquePassarparasercritico = 2;
+    public static final int SorteParaBaixarArmaduraMaximo = 100;
     private int numero;
     private int stack;
     private double critico;
@@ -31,7 +35,8 @@ public class BattleDmg {
     private int NumeroAleatorio(){
         Random r = new Random();
         int min = 1;
-        int max = 1000;
+        int max = SorteBatalhavalorMAX;
+
 
         return r.nextInt(max - min + 1) + min;
     }
@@ -39,9 +44,11 @@ public class BattleDmg {
     private void DecisonofActionVillan(){
         for (double i=0;i<AppData.villan.getLuck();i++){
             numero=NumeroAleatorio();
-            if (numero<500){
+            if (numero<AlgoritmoValorMinimo){
 
-            }else if(numero<750){
+
+            }else if(numero< AlgoritmoValorMedio){
+
                 Dealdmg(false,true);
             }else{
                 Heal(false,true);
@@ -53,9 +60,9 @@ public class BattleDmg {
     private void DecisonofActionHero(){
             for (double i = 0; i < AppData.selectedhero.getLuck(); i++) {
                 numero = NumeroAleatorio();
-                if (numero < 500) {
+                if (numero < AlgoritmoValorMinimo) {
 
-                } else if (numero < 750) {
+                } else if (numero < AlgoritmoValorMedio) {
                     Dealdmg(true, false);
                 } else {
                     Heal(true, false);
@@ -68,7 +75,7 @@ public class BattleDmg {
         if(hero) {
 
 
-                    if (stack > 2) {
+                    if (stack > QuantidadedeXquetemquePassarparasercritico) {
                         AppData.herocrit = true;
                         critico = AppData.selectedstats.getAtk() * 2;
 
@@ -99,7 +106,7 @@ public class BattleDmg {
                     }
 
         }else if (villan) {
-                if (stack > 2) {
+                if (stack > QuantidadedeXquetemquePassarparasercritico) {
                     AppData.villancrit=true;
                     critico=AppData.villan.getAtk()*2;
 
@@ -142,7 +149,7 @@ public class BattleDmg {
     private void LowerDefence(boolean hero,boolean villan,double hipotesebaixararmadura){
         Random r = new Random();
         int min = 1;
-        int max = 100;
+        int max = SorteParaBaixarArmaduraMaximo;
 
         if(hero){
             int value=r.nextInt(max - min + 1) + min;

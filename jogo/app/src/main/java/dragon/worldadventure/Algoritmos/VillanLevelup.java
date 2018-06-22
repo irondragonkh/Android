@@ -6,10 +6,15 @@ import dragon.worldadventure.Objects.AppData;
 
 public class VillanLevelup {
 
+    public static final int SorteValor1 = 500;
+    public static final int SorteValor2 = 700;
+    public static final int SorteValor3 = 900;
+    public static final int SorteValorMaximo = 1000;
+
     private int NumeroAleatorio(){
         Random r = new Random();
         int min = 1;
-        int max = 1000;
+        int max = SorteValorMaximo;
 
         return r.nextInt(max - min + 1) + min;
     }
@@ -26,11 +31,11 @@ public class VillanLevelup {
 
                     hp = NumeroAleatorio();
 
-                    if (hp < 500) {
+                    if (hp < SorteValor1) {
                         AppData.villan.setHp(AppData.villan.getHp() + 2);
-                    } else if (hp < 700) {
+                    } else if (hp < SorteValor2) {
                         AppData.villan.setHp(AppData.villan.getHp() + 3);
-                    } else if (hp < 900) {
+                    } else if (hp < SorteValor3) {
                         AppData.villan.setHp(AppData.villan.getHp() + 4);
                     } else {
                         AppData.villan.setHp(AppData.villan.getHp() + 5);
@@ -38,11 +43,11 @@ public class VillanLevelup {
 
                     atk = NumeroAleatorio();
 
-                    if (atk < 500) {
+                    if (atk < SorteValor1) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 3);
-                    } else if (atk < 700) {
+                    } else if (atk < SorteValor2) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 4);
-                    } else if (atk < 900) {
+                    } else if (atk < SorteValor3) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 5);
                     } else {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 6);
@@ -50,11 +55,11 @@ public class VillanLevelup {
 
                     defence = NumeroAleatorio();
 
-                    if (defence < 500) {
+                    if (defence < SorteValor1) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 1);
-                    } else if (defence < 700) {
+                    } else if (defence < SorteValor2) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 2);
-                    } else if (defence < 900) {
+                    } else if (defence < SorteValor3) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 3);
                     } else {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 4);
@@ -65,11 +70,11 @@ public class VillanLevelup {
 
                     hp = NumeroAleatorio();
 
-                    if (hp < 500) {
+                    if (hp < SorteValor1) {
                         AppData.villan.setHp(AppData.villan.getHp() + 1);
-                    } else if (hp < 700) {
+                    } else if (hp < SorteValor2) {
                         AppData.villan.setHp(AppData.villan.getHp() + 2);
-                    } else if (hp < 900) {
+                    } else if (hp < SorteValor3) {
                         AppData.villan.setHp(AppData.villan.getHp() + 3);
                     } else {
                         AppData.villan.setHp(AppData.villan.getHp() + 4);
@@ -77,11 +82,11 @@ public class VillanLevelup {
 
                     atk = NumeroAleatorio();
 
-                    if (atk < 500) {
+                    if (atk < SorteValor1) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 7);
-                    } else if (atk < 700) {
+                    } else if (atk < SorteValor2) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 8);
-                    } else if (atk < 900) {
+                    } else if (atk < SorteValor3) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 9);
                     } else {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 10);
@@ -89,11 +94,11 @@ public class VillanLevelup {
 
                     defence = NumeroAleatorio();
 
-                    if (defence < 500) {
+                    if (defence < SorteValor1) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 1);
-                    } else if (defence < 700) {
+                    } else if (defence < SorteValor2) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 2);
-                    } else if (defence < 900) {
+                    } else if (defence < SorteValor3) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 3);
                     } else {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 4);
@@ -104,11 +109,11 @@ public class VillanLevelup {
 
                     hp = NumeroAleatorio();
 
-                    if (hp < 500) {
+                    if (hp < SorteValor1) {
                         AppData.villan.setHp(AppData.villan.getHp() + 3);
-                    } else if (hp < 700) {
+                    } else if (hp < SorteValor2) {
                         AppData.villan.setHp(AppData.villan.getHp() + 4);
-                    } else if (hp < 900) {
+                    } else if (hp < SorteValor3) {
                         AppData.villan.setHp(AppData.villan.getHp() + 5);
                     } else {
                         AppData.villan.setHp(AppData.villan.getHp() + 6);
@@ -116,11 +121,11 @@ public class VillanLevelup {
 
                     atk = NumeroAleatorio();
 
-                    if (atk < 500) {
+                    if (atk < SorteValor1) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 1);
-                    } else if (atk < 700) {
+                    } else if (atk < SorteValor2) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 2);
-                    } else if (atk < 900) {
+                    } else if (atk < SorteValor3) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 3);
                     } else {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 4);
@@ -128,11 +133,11 @@ public class VillanLevelup {
 
                     defence = NumeroAleatorio();
 
-                    if (defence < 500) {
+                    if (defence < SorteValor1) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 2);
-                    } else if (defence < 700) {
+                    } else if (defence < SorteValor2) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 3);
-                    } else if (defence < 900) {
+                    } else if (defence < SorteValor3) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 4);
                     } else {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 5);
@@ -143,11 +148,11 @@ public class VillanLevelup {
 
                     hp = NumeroAleatorio();
 
-                    if (hp < 500) {
+                    if (hp < SorteValor1) {
                         AppData.villan.setHp(AppData.villan.getHp() + 1);
-                    } else if (hp < 700) {
+                    } else if (hp < SorteValor2) {
                         AppData.villan.setHp(AppData.villan.getHp() + 2);
-                    } else if (hp < 900) {
+                    } else if (hp < SorteValor3) {
                         AppData.villan.setHp(AppData.villan.getHp() + 3);
                     } else {
                         AppData.villan.setHp(AppData.villan.getHp() + 4);
@@ -155,11 +160,11 @@ public class VillanLevelup {
 
                     atk = NumeroAleatorio();
 
-                    if (atk < 500) {
+                    if (atk < SorteValor1) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 3);
-                    } else if (atk < 700) {
+                    } else if (atk < SorteValor2) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 4);
-                    } else if (atk < 900) {
+                    } else if (atk < SorteValor3) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 5);
                     } else {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 6);
@@ -167,11 +172,11 @@ public class VillanLevelup {
 
                     defence = NumeroAleatorio();
 
-                    if (defence < 500) {
+                    if (defence < SorteValor1) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 2);
-                    } else if (defence < 700) {
+                    } else if (defence < SorteValor2) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 3);
-                    } else if (defence < 900) {
+                    } else if (defence < SorteValor3) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 4);
                     } else {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 5);
@@ -182,11 +187,11 @@ public class VillanLevelup {
 
                     hp = NumeroAleatorio();
 
-                    if (hp < 500) {
+                    if (hp < SorteValor1) {
                         AppData.villan.setHp(AppData.villan.getHp() + 1);
-                    } else if (hp < 700) {
+                    } else if (hp < SorteValor2) {
                         AppData.villan.setHp(AppData.villan.getHp() + 2);
-                    } else if (hp < 900) {
+                    } else if (hp < SorteValor3) {
                         AppData.villan.setHp(AppData.villan.getHp() + 3);
                     } else {
                         AppData.villan.setHp(AppData.villan.getHp() + 4);
@@ -194,11 +199,11 @@ public class VillanLevelup {
 
                     atk = NumeroAleatorio();
 
-                    if (atk < 500) {
+                    if (atk < SorteValor1) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 1);
-                    } else if (atk < 700) {
+                    } else if (atk < SorteValor2) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 2);
-                    } else if (atk < 900) {
+                    } else if (atk < SorteValor3) {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 3);
                     } else {
                         AppData.villan.setAtk(AppData.villan.getAtk() + 4);
@@ -206,11 +211,11 @@ public class VillanLevelup {
 
                     defence = NumeroAleatorio();
 
-                    if (defence < 500) {
+                    if (defence < SorteValor1) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 7);
-                    } else if (defence < 700) {
+                    } else if (defence < SorteValor2) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 8);
-                    } else if (defence < 900) {
+                    } else if (defence < SorteValor3) {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 9);
                     } else {
                         AppData.villan.setDefense(AppData.villan.getDefense() + 10);
