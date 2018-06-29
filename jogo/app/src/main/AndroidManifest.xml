@@ -37,7 +37,8 @@
             android:label="@string/title_activity_create_hero"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Class_Interface.BattleMode"></activity>
+        <activity android:name=".Class_Interface.BattleMode" />
+        <activity android:name=".Class_Interface.VillanList"></activity>
     </application>
 
 </manifest>

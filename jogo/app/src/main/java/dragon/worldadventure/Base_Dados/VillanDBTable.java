@@ -50,11 +50,34 @@ public class VillanDBTable implements BaseColumns {
         return query(projection,_ID + "=?",new String[]{id},null);
     }
 
+    public static Villan getCurrentVillanFromCursor(Cursor cursor) {
+        final int posId = cursor.getColumnIndex(_ID);
+        final int posName = cursor.getColumnIndex(DB_COLUMN_NAME);
+        final int posHP = cursor.getColumnIndex(DB_COLUMN_HP);
+        final int posATK = cursor.getColumnIndex(DB_COLUMN_ATK);
+        final int posDEF = cursor.getColumnIndex(DB_COLUMN_DEFENSE);
+        final int posLuck = cursor.getColumnIndex(DB_COLUMN_LUCK);
+
+        Villan villan = new Villan();
+
+        villan.setId(cursor.getLong(posId));
+        villan.setVillanname(cursor.getString(posName));
+        villan.setHp(cursor.getDouble(posHP));
+        villan.setAtk(cursor.getDouble(posATK));
+        villan.setDefense(cursor.getDouble(posDEF));
+        villan.setLuck(cursor.getDouble(posLuck));
+
+        return villan;
+    }
 
     //CRUD
 
     public int delete(String id){
         return db.delete(TABLE_NAME,_ID + "=?",new String[]{id});
+    }
+
+    public int delete(String whereClause, String[] whereArgs) {
+        return db.delete(TABLE_NAME, whereClause, whereArgs);
     }
 
     public long insert(ContentValues contentValues){
@@ -64,6 +87,9 @@ public class VillanDBTable implements BaseColumns {
     //ponho aqui o update apesar de que esta tabela nao pode fazer updates so insert e delete
     public int update(ContentValues contentValues, String id){
         return db.update(TABLE_NAME,contentValues,_ID + "=?",new String[]{id});
+    }
+    public int update(ContentValues values, String whereClause, String[] whereArgs) {
+        return db.update(TABLE_NAME, values, whereClause, whereArgs);
     }
 
 

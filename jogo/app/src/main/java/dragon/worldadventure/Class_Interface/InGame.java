@@ -28,7 +28,6 @@ import dragon.worldadventure.Base_Dados.LevelDBTable;
 import dragon.worldadventure.Base_Dados.StatsDBTable;
 import dragon.worldadventure.Base_Dados.UserHeroesDBTable;
 import dragon.worldadventure.Base_Dados.VillanDBTable;
-import dragon.worldadventure.Class_Interface.InGameTabs.Battle;
 import dragon.worldadventure.Class_Interface.InGameTabs.Preferences;
 import dragon.worldadventure.Class_Interface.InGameTabs.Profile;
 import dragon.worldadventure.Class_Interface.InGameTabs.Stats;
@@ -91,7 +90,9 @@ public class InGame extends AppCompatActivity
             // Handle the camera action
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Travel()).commit();
         } else if (id == R.id.nav_battle) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Battle()).commit();
+            Intent intent = new Intent (this, VillanList.class);
+            startActivity(intent);
+            finish();
         } else if (id == R.id.nav_profile) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Profile()).commit();
         } else if (id == R.id.nav_preferences) {

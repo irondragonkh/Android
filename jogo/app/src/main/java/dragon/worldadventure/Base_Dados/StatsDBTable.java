@@ -61,6 +61,10 @@ public class StatsDBTable implements BaseColumns {
         return db.delete(TABLE_NAME,_ID + "=?",new String[]{id});
     }
 
+    public int delete(String whereClause, String[] whereArgs) {
+        return db.delete(TABLE_NAME, whereClause, whereArgs);
+    }
+
     public long insert(ContentValues contentValues){
         return db.insert(TABLE_NAME,null,contentValues);
     }
@@ -68,6 +72,9 @@ public class StatsDBTable implements BaseColumns {
     //ponho aqui o update apesar de que esta tabela nao pode fazer updates so insert e delete
     public int update(ContentValues contentValues, String id){
         return db.update(TABLE_NAME,contentValues,_ID + "=?",new String[]{id});
+    }
+    public int update(ContentValues values, String whereClause, String[] whereArgs) {
+        return db.update(TABLE_NAME, values, whereClause, whereArgs);
     }
 
     public void seed(){
