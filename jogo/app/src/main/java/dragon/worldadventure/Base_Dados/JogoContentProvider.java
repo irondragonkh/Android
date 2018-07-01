@@ -16,7 +16,7 @@ import java.text.BreakIterator;
 
 public class JogoContentProvider extends ContentProvider {
 
-    private static final String AUTHORITY = "dragon.worldadventure.Base_Dados";
+    private static final String AUTHORITY = "dragon.worldadventure";
 
     public static final Uri BASE_URI = Uri.parse("content://" + AUTHORITY);
 

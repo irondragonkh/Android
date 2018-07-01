@@ -58,7 +58,7 @@ public class UserHeroesDBTable implements BaseColumns {
     }
 
     public Cursor queryCheckTab(String[] projection,String id,String tab){
-        return query(projection,_ID + "=? AND "+DB_COLUMN_TAB + "=?",new String[]{id,tab},null);
+        return query(projection,DB_COLUMN_ID_USER + "=? AND "+DB_COLUMN_TAB + "=?",new String[]{id,tab},null);
     }
 
    /* public Cursor queryCheckTab(long userid,int tab) {

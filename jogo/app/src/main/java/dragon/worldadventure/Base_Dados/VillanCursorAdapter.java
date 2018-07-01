@@ -21,6 +21,7 @@ public class VillanCursorAdapter extends RecyclerView.Adapter<VillanCursorAdapte
 
     public VillanCursorAdapter(Context context) {
         this.context = context;
+        //primeiro
     }
 
     public void refreshData(Cursor cursor) {
@@ -28,10 +29,12 @@ public class VillanCursorAdapter extends RecyclerView.Adapter<VillanCursorAdapte
             this.cursor = cursor;
             notifyDataSetChanged();
         }
+        //terceiro
     }
 
     public void setViewHolderClickListener(View.OnClickListener viewHolderClickListener) {
         this.viewHolderClickListener = viewHolderClickListener;
+        //segundo
     }
 
     public int getLastVillanClicked() {
@@ -121,6 +124,7 @@ public class VillanCursorAdapter extends RecyclerView.Adapter<VillanCursorAdapte
 
         public void setVillan(Villan villan) {
             textViewName.setText(villan.getVillanname());
+            villanId = villan.getId();
             if(villanId==1){
                 textViewStats.setText("HP,ATK");
             }else if(villanId==2){
@@ -133,7 +137,7 @@ public class VillanCursorAdapter extends RecyclerView.Adapter<VillanCursorAdapte
             }else if(villanId==5){
                 textViewStats.setText("DEF DEF");
             }
-            villanId = villan.getId();
+
         }
 
         /**

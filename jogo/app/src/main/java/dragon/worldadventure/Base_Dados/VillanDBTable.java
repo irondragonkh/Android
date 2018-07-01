@@ -15,7 +15,7 @@ public class VillanDBTable implements BaseColumns {
     public static final String DB_COLUMN_LUCK="LUCK";
     public static final String DB_COLUMN_DEFENSE="DEFENSE";
 
-    public static final String[] ALL_FIELDS = {
+    public static final String[] ALL_FIELDS =  new String[] {
             _ID,
             DB_COLUMN_NAME,
             DB_COLUMN_HP,
@@ -50,6 +50,16 @@ public class VillanDBTable implements BaseColumns {
         return query(projection,_ID + "=?",new String[]{id},null);
     }
 
+    public static ContentValues getContentValues(Villan villan){
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DB_COLUMN_NAME,villan.getVillanname());
+        contentValues.put(DB_COLUMN_HP,villan.getHp());
+        contentValues.put(DB_COLUMN_DEFENSE,villan.getDefense());
+        contentValues.put(DB_COLUMN_LUCK,villan.getLuck());
+        contentValues.put(DB_COLUMN_ATK,villan.getAtk());
+        return contentValues;
+    }
     public static Villan getCurrentVillanFromCursor(Cursor cursor) {
         final int posId = cursor.getColumnIndex(_ID);
         final int posName = cursor.getColumnIndex(DB_COLUMN_NAME);

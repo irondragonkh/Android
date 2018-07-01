@@ -32,6 +32,7 @@ import dragon.worldadventure.Class_Interface.InGameTabs.Preferences;
 import dragon.worldadventure.Class_Interface.InGameTabs.Profile;
 import dragon.worldadventure.Class_Interface.InGameTabs.Stats;
 import dragon.worldadventure.Class_Interface.InGameTabs.Travel;
+import dragon.worldadventure.Class_Interface.InGameTabs.VillanList;
 import dragon.worldadventure.Objects.AppData;
 import dragon.worldadventure.Objects.Level;
 import dragon.worldadventure.Objects.Villan;

@@ -50,4 +50,5 @@
     <string name="Battlefight">FIGHT</string>
     <string name="BattleEndButton">End</string>
     <string name="BattleGameOverButton">GameOver</string>
+    <string name="title_activity_teste">Teste</string>
 </resources>
