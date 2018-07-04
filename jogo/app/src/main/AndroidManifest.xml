@@ -31,14 +31,17 @@
         <activity
             android:name=".Class_Interface.InGame"
             android:label="@string/title_activity_in_game"
+            android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Class_Interface.CreateHero"
             android:label="@string/title_activity_create_hero"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Class_Interface.BattleMode" />
-        <activity android:name=".Class_Interface.InGameTabs.VillanList" />
+        <activity android:name=".Class_Interface.BattleMode"
+            android:screenOrientation="locked"/>
+        <activity android:name=".Class_Interface.InGameTabs.VillanList"
+            android:screenOrientation="locked"/>
 
         <provider
             android:name=".Base_Dados.JogoContentProvider"
