@@ -15,6 +15,7 @@ public class UserHero {
     private long userid;
     private long levelid;
     private int tab;
+    private int points;
 
 
 
@@ -26,6 +27,7 @@ public class UserHero {
         this.userid=cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_USER));
         this.levelid=cursor.getLong(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_ID_LEVEL));
         this.tab = cursor.getInt(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_TAB));
+        this.points = cursor.getInt(cursor.getColumnIndex(UserHeroesDBTable.DB_COLUMN_POINTS));
 
     }
 
@@ -42,6 +44,7 @@ public class UserHero {
         this.userid = userid;
         this.levelid = levelid;
         this.tab = tab;
+        this.points=0;
     }
 
     //--------------------------------------------------------------------------------------------------
@@ -96,6 +99,14 @@ public class UserHero {
         this.tab = tab;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     //---------------------------------------------------------------------------------------------------
 
 
@@ -106,6 +117,7 @@ public class UserHero {
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_LEVEL,levelid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_ID_USER,userid);
         contentValues.put(UserHeroesDBTable.DB_COLUMN_TAB,tab);
+        contentValues.put(UserHeroesDBTable.DB_COLUMN_POINTS,points);
         return contentValues;
     }
 

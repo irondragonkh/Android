@@ -52,6 +52,8 @@ public class SubirdeNivel {
         int atk;
         int defence;
 
+        AppData.selectedusedhero.setPoints(AppData.selectedusedhero.getPoints()+5);
+
 
           if(AppData.selectedhero.getId()==1){
 

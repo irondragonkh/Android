@@ -49,6 +49,8 @@ public class InGame extends AppCompatActivity
     private TravelAdvanceAdventureTexts textofstep = new TravelAdvanceAdventureTexts();
     private SubirdeNivel subirdeNivel = new SubirdeNivel();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -258,4 +260,54 @@ public class InGame extends AppCompatActivity
         }
     }
 
+    private void UpdateStats(){
+        final SQLiteDatabase db =dbHandler.getReadableDatabase();
+        final UserHeroesDBTable userHeroesDBTable= new UserHeroesDBTable(db);
+        final StatsDBTable statsDBTable = new StatsDBTable(db);
+
+        userHeroesDBTable.update(AppData.selectedusedhero.getContentValues(),""+AppData.selectedusedhero.getId());
+        statsDBTable.update(AppData.selectedstats.getContentValues(),""+ AppData.selectedstats.getId());
+
+        TextView hp = (TextView) findViewById(R.id.TextViewSelectedHPValue);
+        TextView atk = (TextView) findViewById(R.id.TextViewSelectedATKValue);
+        TextView defence = (TextView) findViewById(R.id.TextViewSelectedDefenceValue);
+        TextView textViewPoints = (TextView) findViewById(R.id.TextViewPointsLeft);
+
+        hp.setText(""+AppData.selectedstats.getHp());
+        atk.setText(""+AppData.selectedstats.getAtk());
+        defence.setText(""+AppData.selectedstats.getDefense());
+        textViewPoints.setText("Points left to spend: " + AppData.selectedusedhero.getPoints());
+
+    }
+
+    public void HadPointsHP(View view) {
+        if(AppData.selectedusedhero.getPoints()!=0){
+            AppData.selectedstats.setHp(AppData.selectedstats.getHp()+1);
+            AppData.selectedusedhero.setPoints(AppData.selectedusedhero.getPoints()-1);
+            UpdateStats();
+
+        }
+
+
+
+    }
+
+    public void HadPointsATK(View view) {
+        if(AppData.selectedusedhero.getPoints()!=0){
+            AppData.selectedstats.setAtk(AppData.selectedstats.getAtk()+1);
+            AppData.selectedusedhero.setPoints(AppData.selectedusedhero.getPoints()-1);
+            UpdateStats();
+
+        }
+
+    }
+
+    public void HadPointsDefence(View view) {
+        if(AppData.selectedusedhero.getPoints()!=0){
+            AppData.selectedstats.setDefense(AppData.selectedstats.getDefense()+1);
+            AppData.selectedusedhero.setPoints(AppData.selectedusedhero.getPoints()-1);
+            UpdateStats();
+
+        }
+    }
 }
