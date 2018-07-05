@@ -185,7 +185,7 @@ public class InGame extends AppCompatActivity
         final StatsDBTable statsDBTable = new StatsDBTable(db);
         final LevelDBTable levelDBTable = new LevelDBTable(db);
         final VillanDBTable villanDBTable = new VillanDBTable(db);
-        String steptext;
+        int steptext;
 
         TextView textViewAdventureText = (TextView)findViewById(R.id.TextViewAdventureText);
         CardView cardView = (CardView)findViewById(R.id.CardViewAdventureBonus);

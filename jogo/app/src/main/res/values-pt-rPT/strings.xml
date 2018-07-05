@@ -49,4 +49,14 @@
     <string name="BattleEndButton">Acabar</string>
     <string name="BattleGameOverButton">Perdeu</string>
     <string name="title_activity_teste">Teste</string>
+    <string name="StepText1">Encontraste uma casa velha, parece que ninguem la esta</string>
+    <string name="StepText4">Chegaste a uma cidade, é um bom sitio para procurar informação e talvez descansar</string>
+    <string name="StepText2">Encontras uma caverna, decides entrar e procurar por um tesouro e com esperança não encontrar um urso, tiveste sorte</string>
+    <string name="StepText3">continuas a andar por ai a pensar na vida</string>
+    <string name="StepText5">caminhas para uma ruina antiga e vais explora la</string>
+    <string name="StepText6">vais jogar cartas com os amigos</string>
+    <string name="StepText7">obrigado por jogares este jogo</string>
+    <string name="StepText8">vais fazer exercicio</string>
+    <string name="StepText9">encontras te um lar de um mostro, esperas que nao esteja nenhum mostro la</string>
+    <string name="StepText10">encontras te alguns mercadores, e decides ajuda los</string>
 </resources>

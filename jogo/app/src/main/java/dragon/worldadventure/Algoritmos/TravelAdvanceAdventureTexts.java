@@ -2,12 +2,14 @@ package dragon.worldadventure.Algoritmos;
 
 import java.util.Random;
 
+import dragon.worldadventure.R;
+
 public class TravelAdvanceAdventureTexts {
 
     Random r = new Random();
     TravelXPRewards algoritmod = new TravelXPRewards();
 
-public String ChooseField(){
+public int ChooseField() {
 
 
     int min = 1;
@@ -16,28 +18,29 @@ public String ChooseField(){
 
     int randomnumber = r.nextInt(max - min + 1) + min;
 
-    if(randomnumber==1){
-        return "You found a old house, seems like no one is there";
-    }else if(randomnumber==2){
-        return "You run into a cavern, you decide to enter looking for a treasure and hopefully no bear, it happers you had luck";
-    }else if(randomnumber==3){
-        return "You keep walking around, thinking about life";
-    }else if(randomnumber==4){
-        return "You reach a town, good place to gather information and maybe rest a bit ";
-    }else if(randomnumber==5){
-        return "You walk into a ancient ruin,you decide to explore it";
-    }else if(randomnumber==6){
-        return "You go play cards with your friends";
-    }else if(randomnumber==7){
-        return "Thank you for playing this game, send a email with tips to improve the game";
-    }else if(randomnumber==8){
-        return "You try to exercise more at morning, exercise is good to keep focus and health and maybe help you survive";
-    }else if(randomnumber==9){
-        return "You found a monster lair, hopefully no monster is there";
-    }else if(randomnumber==10){
-        return "You found some mercheants and decide to help them until the next city";
+    if (randomnumber == 1) {
+        return R.string.StepText1;
+    } else if (randomnumber == 2) {
+        return R.string.StepText2;
+    } else if (randomnumber == 3) {
+        return R.string.StepText3;
+    } else if (randomnumber == 4) {
+        return R.string.StepText4;
+    } else if (randomnumber == 5) {
+        return R.string.StepText5;
+    } else if (randomnumber == 6) {
+        return R.string.StepText6;
+    } else if (randomnumber == 7) {
+        return R.string.StepText7;
+    } else if (randomnumber == 8) {
+        return R.string.StepText8;
+    } else if (randomnumber == 9) {
+        return R.string.StepText9;
+    } else if (randomnumber == 10) {
+        return R.string.StepText10;
+
     }else{
-        return null;
+        return -1;
     }
 }
 

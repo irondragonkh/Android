@@ -51,4 +51,14 @@
     <string name="BattleEndButton">End</string>
     <string name="BattleGameOverButton">GameOver</string>
     <string name="title_activity_teste">Teste</string>
+    <string name="StepText1">You found a old house, seems like no one is there</string>
+    <string name="StepText4">You reach a town, good place to gather information and maybe rest a bit</string>
+    <string name="StepText2">You run into a cavern, you decide to enter looking for a treasure and hopefully no bear, it happers you had luck</string>
+    <string name="StepText3">You keep walking around, thinking about life</string>
+    <string name="StepText5">You walk into a ancient ruin,you decide to explore it</string>
+    <string name="StepText6">You go play cards with your friends</string>
+    <string name="StepText7">Thank you for playing this game, send a email with tips to improve the game</string>
+    <string name="StepText8">You try to exercise more at morning, exercise is good to keep focus and health and maybe help you survive</string>
+    <string name="StepText9">You found a monster lair, hopefully no monster is there</string>
+    <string name="StepText10">You found some mercheants and decide to help them until the next city</string>
 </resources>
